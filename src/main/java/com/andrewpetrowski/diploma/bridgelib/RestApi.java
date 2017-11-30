@@ -63,6 +63,8 @@ public class RestApi<T extends Entity> {
 
     }
 
+ //region POST request
+
     /**
      * Send POST request
      * @param url Site URL
@@ -73,8 +75,8 @@ public class RestApi<T extends Entity> {
     public HttpResponse<JsonNode> SendPost(String url,T data) throws UnirestException
     {
         return Unirest.post(url)
-                    .body(data)
-                    .asJson();
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -86,8 +88,8 @@ public class RestApi<T extends Entity> {
     public HttpResponse<JsonNode> SendPost(T data) throws UnirestException
     {
         return Unirest.post(API_URL)
-                                    .body(data)
-                                    .asJson();
+                .body(data)
+                .asJson();
 
     }
 
@@ -101,9 +103,9 @@ public class RestApi<T extends Entity> {
     public HttpResponse<JsonNode> SendPost(T data, Headers headers) throws UnirestException
     {
         return Unirest.post(API_URL)
-                    .headers(headers.getHeaders())
-                    .body(data)
-                    .asJson();
+                .headers(headers.getHeaders())
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -132,9 +134,9 @@ public class RestApi<T extends Entity> {
      */
     public HttpResponse<JsonNode> SendPost(String url,T data, Map<String,String> headers) throws UnirestException {
         return Unirest.post(url)
-                    .headers(headers)
-                    .body(data)
-                    .asJson();
+                .headers(headers)
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -147,9 +149,9 @@ public class RestApi<T extends Entity> {
     public HttpResponse<JsonNode> SendPost(T data, Map<String,String> headers) throws UnirestException
     {
         return  Unirest.post(API_URL)
-                        .headers(headers)
-                        .body(data)
-                        .asJson();
+                .headers(headers)
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -183,9 +185,9 @@ public class RestApi<T extends Entity> {
     {
         url = url + params.toString();
         return Unirest.post(url)
-                    .headers(headers.getHeaders())
-                    .body(data)
-                    .asJson();
+                .headers(headers.getHeaders())
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -200,9 +202,9 @@ public class RestApi<T extends Entity> {
         String newURL = API_URL + urlParams.toString();
 
         return Unirest.post(newURL)
-                    .headers(headers)
-                    .body(data)
-                    .asJson();
+                .headers(headers)
+                .body(data)
+                .asJson();
     }
 
     /**
@@ -222,6 +224,8 @@ public class RestApi<T extends Entity> {
                 .asJson();
     }
 
+
+
     /**
      * Send POST request async
      * @param data Request data
@@ -233,5 +237,150 @@ public class RestApi<T extends Entity> {
                       .body(data)
                         .asJsonAsync();
     }
+
+    /**
+     * Send POST request async
+     * @param url Site URL
+     * @param data Request data
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url,T data) throws UnirestException {
+        return Unirest.post(url)
+                    .body(data)
+                    .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param data Request data
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers) throws UnirestException
+    {
+        return Unirest.post(API_URL)
+                .headers(headers.getHeaders())
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param url Site URL
+     * @param data Request data
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url,T data, Headers header) throws UnirestException
+    {
+        return Unirest.post(url)
+                .headers(header.getHeaders())
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param url Site URL
+     * @param data Request data
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url,T data, Map<String,String> headers) throws UnirestException {
+        return Unirest.post(url)
+                .headers(headers)
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param data Request data
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Map<String,String> headers) throws UnirestException
+    {
+        return  Unirest.post(API_URL)
+                .headers(headers)
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param url Site URL
+     * @param data Request data
+     * @param headers Request headers
+     * @param params URL parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url,T data, Map<String,String> headers,URLParams params) throws UnirestException
+    {
+        url = url + params.toString();
+        return  Unirest.post(url)
+                .headers(headers)
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param url Site URL
+     * @param data Request data
+     * @param headers Request headers
+     * @param params URL parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url,T data,Headers headers,URLParams params) throws UnirestException
+    {
+        url = url + params.toString();
+        return Unirest.post(url)
+                .headers(headers.getHeaders())
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param data Request data
+     * @param headers Request headers
+     * @param urlParams URL parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Map<String,String> headers, URLParams urlParams) throws UnirestException {
+        String newURL = API_URL + urlParams.toString();
+
+        return Unirest.post(newURL)
+                .headers(headers)
+                .body(data)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send POST request async
+     * @param data Request data
+     * @param headers Request headers
+     * @param urlParams URL parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers, URLParams urlParams) throws UnirestException {
+        String newURL = API_URL + urlParams.toString();
+
+        return Unirest.post(newURL)
+                .headers(headers.getHeaders())
+                .body(data)
+                .asJsonAsync();
+    }
+
+    //endregion 
 
 }
