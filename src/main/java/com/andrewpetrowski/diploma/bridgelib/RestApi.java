@@ -381,6 +381,41 @@ public class RestApi<T extends Entity> {
                 .asJsonAsync();
     }
 
-    //endregion 
+    //endregion
+
+    //region GET request
+    public HttpResponse<JsonNode> SendGet(String url) throws UnirestException {
+        return Unirest.get(url)
+                    .asJson();
+    }
+
+    public HttpResponse<JsonNode> SendGet(String url, Headers headers) throws UnirestException {
+        return Unirest.get(url)
+                    .headers(headers.getHeaders())
+                    .asJson();
+    }
+
+    public HttpResponse<JsonNode> SendGet(String url,Map<String,String> headers) throws UnirestException {
+        return Unirest.get(url)
+                    .headers(headers)
+                    .asJson();
+    }
+
+    public HttpResponse<JsonNode> SendGet(String url,Headers headers, URLParams params) throws UnirestException {
+       url = url + params.toString();
+        return Unirest.get(url)
+                .headers(headers.getHeaders())
+                .asJson();
+    }
+
+    public HttpResponse<JsonNode> SendGet(String url,Map<String,String> headers,URLParams params) throws UnirestException {
+        url = url + params.toString();
+        return Unirest.get(url)
+                    .headers(headers)
+                    .asJson();
+    }
+    
+
+    //endregion
 
 }
