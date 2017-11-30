@@ -384,23 +384,52 @@ public class RestApi<T extends Entity> {
     //endregion
 
     //region GET request
+
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @return  Server response as json object
+     * @throws UnirestException
+     */
     public HttpResponse<JsonNode> SendGet(String url) throws UnirestException {
         return Unirest.get(url)
                     .asJson();
     }
 
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
     public HttpResponse<JsonNode> SendGet(String url, Headers headers) throws UnirestException {
         return Unirest.get(url)
                     .headers(headers.getHeaders())
                     .asJson();
     }
 
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
     public HttpResponse<JsonNode> SendGet(String url,Map<String,String> headers) throws UnirestException {
         return Unirest.get(url)
                     .headers(headers)
                     .asJson();
     }
 
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @param params Request parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
     public HttpResponse<JsonNode> SendGet(String url,Headers headers, URLParams params) throws UnirestException {
        url = url + params.toString();
         return Unirest.get(url)
@@ -408,12 +437,21 @@ public class RestApi<T extends Entity> {
                 .asJson();
     }
 
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @param params Request parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
     public HttpResponse<JsonNode> SendGet(String url,Map<String,String> headers,URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.get(url)
                     .headers(headers)
                     .asJson();
     }
+
     
 
     //endregion
