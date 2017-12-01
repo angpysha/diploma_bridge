@@ -452,7 +452,76 @@ public class RestApi<T extends Entity> {
                     .asJson();
     }
 
-    
+        //region async
+
+    /**
+     * Send GET request async
+     * @param url Site URL
+     * @return  Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url) throws UnirestException {
+        return Unirest.get(url)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send GET request async
+     * @param url Site URL
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Headers headers) throws UnirestException {
+        return Unirest.get(url)
+                .headers(headers.getHeaders())
+                .asJsonAsync();
+    }
+
+    /**
+     * Send GET request async
+     * @param url Site URL
+     * @param headers Request headers
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url,Map<String,String> headers) throws UnirestException {
+        return Unirest.get(url)
+                .headers(headers)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @param params Request parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url,Headers headers, URLParams params) throws UnirestException {
+        url = url + params.toString();
+        return Unirest.get(url)
+                .headers(headers.getHeaders())
+                .asJsonAsync();
+    }
+
+    /**
+     * Send GET request
+     * @param url Site URL
+     * @param headers Request headers
+     * @param params Request parameters
+     * @return Server response as json object
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url,Map<String,String> headers,URLParams params) throws UnirestException {
+        url = url + params.toString();
+        return Unirest.get(url)
+                .headers(headers)
+                .asJsonAsync();
+    }
+
+        //endregion
 
     //endregion
 
