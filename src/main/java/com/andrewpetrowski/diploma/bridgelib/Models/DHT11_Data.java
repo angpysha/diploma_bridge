@@ -1,5 +1,10 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
+/**
+ * Model which store DHT11 sensor data (humidity and temperature)
+ * @author Andrew Petrowsky
+ * @version 1.0
+ */
 public class DHT11_Data extends Entity {
 
     /**

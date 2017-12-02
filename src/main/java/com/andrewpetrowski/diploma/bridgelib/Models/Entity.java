@@ -3,7 +3,12 @@ package com.andrewpetrowski.diploma.bridgelib.Models;
 
 import java.util.Date;
 
-public class Entity {
+/**
+ * Base class for model
+ * @author Andrew Petrowsky
+ * @version 1.0
+ */
+public abstract class Entity {
     /**
      * Object's database id
      */
