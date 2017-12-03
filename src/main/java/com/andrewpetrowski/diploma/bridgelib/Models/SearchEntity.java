@@ -1,4 +1,4 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
-public class SearchEntity {
+public abstract class SearchEntity {
 }
