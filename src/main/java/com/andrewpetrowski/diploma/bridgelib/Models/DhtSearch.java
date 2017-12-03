@@ -8,51 +8,51 @@ import java.util.Optional;
  * @author Andrew Petrowsky
  * @version 1.0
  */
-public class DhtSearch {
+public class DhtSearch extends SearchEntity{
     /**
      * Begin date property for range search
      */
-    public Optional<Date> beginDate;
+    public Date beginDate;
 
     /**
      * End date property for range search
      */
-    public Optional<Date> endDate;
+    public Date endDate;
 
     /**
      * Begin temperature property for range search
      */
-    public Optional<Float> beginTemperature;
+    public Float beginTemperature;
 
     /**
      * End temperature property for range search
      */
-    public Optional<Float> endTemperature;
+    public Float endTemperature;
 
     /**
      * Begin humidity property for range search
      */
-    public Optional<Float> beginHumidity;
+    public Float beginHumidity;
 
     /**
      * End humidity property for range search
      */
-    public Optional<Float> endHumidity;
+    public Float endHumidity;
 
     /**
      * Humidity property for search
      */
-    public Optional<Float> Humidity;
+    public Float Humidity;
 
     /**
      * Temperature property for search
      */
-    public Optional<Float> Temperature;
+    public Float Temperature;
 
     /**
      * Date property for search
      */
-    public Optional<Date> Date;
+    public Date Date;
 
     /**
      * Default constructor
