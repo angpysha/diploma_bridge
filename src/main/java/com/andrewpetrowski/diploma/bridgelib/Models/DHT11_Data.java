@@ -26,4 +26,8 @@ public class DHT11_Data extends Entity {
         this.Temperature = (float) (((data[2] & 0x7F) << 8) + data[3]) / 10;
 
     }
+
+    public DHT11_Data() {
+
+    }
 }
