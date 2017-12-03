@@ -12,7 +12,7 @@ public abstract class Entity {
     /**
      * Object's database id
      */
-    public int Id;
+    public int id;
 
     /**
      * Object's creating date
