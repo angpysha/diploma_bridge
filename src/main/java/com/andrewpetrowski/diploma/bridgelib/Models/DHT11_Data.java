@@ -10,12 +10,12 @@ public class DHT11_Data extends Entity {
     /**
      * This property shows temperature from sensor
      */
-    public float Temperature;
+    private float Temperature;
 
     /**
      * This property shows humidity from sensor
      */
-    public float Humidity;
+    private float Humidity;
 
     /**
      * Default constructor for creating DHT11 sensor data
@@ -27,7 +27,42 @@ public class DHT11_Data extends Entity {
 
     }
 
+    /**
+     * Dummy constructor for DHT11 sensor data
+     */
     public DHT11_Data() {
 
+    }
+
+    /**
+     * Get temperature from sensor
+     * @return Temperature from sensor at Celsius degree
+     */
+    public float getTemperature() {
+        return Temperature;
+    }
+
+    /**
+     * Set temperature from sensor
+     * @param temperature Temperature from sensor at Celsius degree
+     */
+    public void setTemperature(float temperature) {
+        Temperature = temperature;
+    }
+
+    /**
+     * Get humidity from sensor
+     * @return Humidity from sensor
+     */
+    public float getHumidity() {
+        return Humidity;
+    }
+
+    /**
+     * Set humidity from sensor
+     * @param humidity Humidity from sensor
+     */
+    public void setHumidity(float humidity) {
+        Humidity = humidity;
     }
 }
