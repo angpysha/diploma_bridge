@@ -3,12 +3,14 @@ package com.andrewpetrowski.diploma.bridgelib;
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.Headers;
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
 import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
+import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.concurrent.Future;
 
@@ -16,12 +18,13 @@ import java.util.concurrent.Future;
  * This class provides Rest API support for this project.
  * There is used <i><b>Unirest Java library</b></i> for simplify HTTP Requests
  *
- * @param <T> Model class
+ * @param <T> Database model which extends from <b>Entity</b> class
+ * @see Entity
  * @author Andrew Petrowsky
- * @version 0.2
+ * @version 0.8
  */
 public class RestApi<T extends Entity> {
-    private final String API_URL = "http://diplomaapi:8080/dhts/add";
+    protected final String API_URL = "http://diplomaapi:8080/dhts/add";
 
     /**
      * Default class constructor
@@ -914,4 +917,10 @@ public class RestApi<T extends Entity> {
 
     //endregion
 
+    //region DELETE request
+
+    //endregion
+
 }
+
+
