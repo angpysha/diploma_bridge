@@ -8,12 +8,22 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+/**
+ * Extended class for REST API. This one can help to split search model from database model.
+ * @param <T> Database model which extends from <b>Entity</b> class
+ * @param <U> Search model which extends from <b>SearchEntity</b> class
+ * @see Entity
+ * @see SearchEntity
+ * @author Andrew Petrowsky
+ * @version 0.1
+ */
 public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<T> {
 
     public RestApiEx() {
         super();
     }
 
+    //region POST request
     public HttpResponse<JsonNode> SendPost(String url,U data) throws UnirestException {
         return Unirest.post(url)
                     .body(data)
@@ -25,6 +35,8 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
                     .body(data)
                     .asJson();
     }
+
+    //endregion
 
 
 }
