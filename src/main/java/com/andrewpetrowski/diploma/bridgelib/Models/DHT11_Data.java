@@ -27,6 +27,11 @@ public class DHT11_Data extends Entity {
 
     }
 
+    public DHT11_Data(float temperature,float humidity) {
+        this.Temperature = temperature;
+        this.Humidity = humidity;
+    }
+
     /**
      * Dummy constructor for DHT11 sensor data
      */
