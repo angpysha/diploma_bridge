@@ -1,6 +1,8 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
@@ -34,6 +36,7 @@ public abstract class Entity {
      *
      * @return Entity id
      */
+    @JsonProperty(value = "id")
     public int getId() {
         return id;
     }
@@ -52,6 +55,7 @@ public abstract class Entity {
      *
      * @return Creation date
      */
+    @JsonProperty(value = "Created_at")
     public Date getCreated_at() {
         return Created_at;
     }
@@ -69,6 +73,7 @@ public abstract class Entity {
      * Set update date
      * @param updated_at Update date
      */
+    @JsonProperty(value = "Updated_at")
     public void setUpdated_at(Date updated_at) {
         Updated_at = updated_at;
     }

@@ -1,5 +1,7 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Model which store DHT11 sensor data (humidity and temperature)
  * @author Andrew Petrowsky
@@ -43,6 +45,7 @@ public class DHT11_Data extends Entity {
      * Get temperature from sensor
      * @return Temperature from sensor at Celsius degree
      */
+    @JsonProperty(value = "Temperature")
     public float getTemperature() {
         return Temperature;
     }
@@ -59,6 +62,7 @@ public class DHT11_Data extends Entity {
      * Get humidity from sensor
      * @return Humidity from sensor
      */
+    @JsonProperty(value = "Humidity")
     public float getHumidity() {
         return Humidity;
     }
