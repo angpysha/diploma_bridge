@@ -1,5 +1,8 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
+import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.DateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 import java.util.Optional;
 
@@ -12,11 +15,13 @@ public class DhtSearch extends SearchEntity{
     /**
      * Begin date property for range search
      */
+    @JsonSerialize(using = DateSerializer.class)
     public Date beginDate;
 
     /**
      * End date property for range search
      */
+    @JsonSerialize(using = DateSerializer.class)
     public Date endDate;
 
     /**
@@ -52,6 +57,7 @@ public class DhtSearch extends SearchEntity{
     /**
      * Date property for search
      */
+    @JsonSerialize(using = DateSerializer.class)
     public Date Date;
 
     /**
