@@ -7,10 +7,12 @@ import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.HTTP;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.Dictionary;
 import java.util.Map;
 import java.util.concurrent.Future;
 
@@ -918,6 +920,84 @@ public class RestApi<T extends Entity> {
     //endregion
 
     //region DELETE request
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public HttpResponse<JsonNode> SendDelete(String url,int id) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                .asJson();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public HttpResponse<JsonNode> SendDelete(String url,int id, Headers headers) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                    .headers(headers.getHeaders())
+                    .asJson();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public HttpResponse<JsonNode> SendDelete(String url, int id, Map<String,String> headers) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                    .headers(headers)
+                    .asJson();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @param params  Request URL parameters
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public HttpResponse<JsonNode> SendDelete(String url,int id,Headers headers,URLParams params) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        url = url + params.toString();
+        return Unirest.delete(url)
+                .headers(headers.getHeaders())
+                .asJson();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @param params  Request URL parameters
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public HttpResponse<JsonNode> SendDelete(String url, int id, Map<String,String> headers,URLParams params) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        url = String.format("%s%s",url,params.toString());
+        return Unirest.delete(url)
+                    .headers(headers)
+                    .asJson();
+    }
+
 
     //endregion
 
