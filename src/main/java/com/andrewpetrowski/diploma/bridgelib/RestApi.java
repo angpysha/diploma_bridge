@@ -998,6 +998,84 @@ public class RestApi<T extends Entity> {
                     .asJson();
     }
 
+    //async
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id, Headers headers) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                .headers(headers.getHeaders())
+                .asJsonAsync();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url, int id, Map<String,String> headers) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        return Unirest.delete(url)
+                .headers(headers)
+                .asJsonAsync();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @param params  Request URL parameters
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id,Headers headers,URLParams params) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        url = url + params.toString();
+        return Unirest.delete(url)
+                .headers(headers.getHeaders())
+                .asJsonAsync();
+    }
+
+    /**
+     * Send DELETE request
+     * @param url Site url
+     * @param id Object id
+     * @param headers Request headers
+     * @param params  Request URL parameters
+     * @return  Json value, which contains the result of operation;
+     * @throws UnirestException
+     */
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url, int id, Map<String,String> headers,URLParams params) throws UnirestException {
+        url = String.format("%s/%d",url,id);
+        url = String.format("%s%s",url,params.toString());
+        return Unirest.delete(url)
+                .headers(headers)
+                .asJsonAsync();
+    }
+    //endasync
 
     //endregion
 
