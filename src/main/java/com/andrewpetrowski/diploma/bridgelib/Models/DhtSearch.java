@@ -1,6 +1,7 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.DateSerializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
@@ -12,58 +13,178 @@ import java.util.Optional;
  * @version 1.0
  */
 public class DhtSearch extends SearchEntity{
-    /**
-     * Begin date property for range search
-     */
-    @JsonSerialize(using = DateSerializer.class)
-    public Date beginDate;
-
-    /**
-     * End date property for range search
-     */
-    @JsonSerialize(using = DateSerializer.class)
-    public Date endDate;
 
     /**
      * Begin temperature property for range search
      */
-    public Float beginTemperature;
+    private Float beginTemperature;
+
+    /**
+     *Get begin temperature property
+     * @return Begin temperature
+     */
+    @JsonProperty(value = "beginTemperature")
+    public Float getBeginTemperature() {
+        return beginHumidity;
+    }
+
+    /**
+     * Set begin temperature property
+     * @param beginTemperature Begin temperature
+     */
+    public void setBeginTemperature(Float beginTemperature) {
+        this.beginTemperature = beginTemperature;
+    }
 
     /**
      * End temperature property for range search
      */
-    public Float endTemperature;
+    private Float endTemperature;
+
+    /**
+     * Set end temperature property
+     * @param endTemperature End temperature
+     */
+    public void setEndTemperature(Float endTemperature) {
+        this.endTemperature = endTemperature;
+    }
+
+    /**
+     *Get end temperature property
+     * @return End temperature
+     */
+    @JsonProperty(value = "endTemperature")
+    public Float getEndTemperature() {
+        return endTemperature;
+    }
 
     /**
      * Begin humidity property for range search
      */
-    public Float beginHumidity;
+    private Float beginHumidity;
+
+    /**
+     *Get begin humidity property
+     * @return Begin humidity
+     */
+    @JsonProperty(value = "beginHumidity")
+    public Float getBeginHumidity() {
+        return beginHumidity;
+    }
+
+    /**
+     * Set begin humidity property
+     * @param beginHumidity Begin humidity
+     */
+    public void setBeginHumidity(Float beginHumidity) {
+        this.beginHumidity = beginHumidity;
+    }
 
     /**
      * End humidity property for range search
      */
-    public Float endHumidity;
+    private Float endHumidity;
+
+    /**
+     *Get end humidity property
+     * @return End humidity
+     */
+    @JsonProperty(value = "endHumidity")
+    public Float getEndHumidity() {
+        return endHumidity;
+    }
+
+    /**
+     * Set end humidity property
+     * @param endHumidity End humidity
+     */
+    public void setEndHumidity(Float endHumidity) {
+        this.endHumidity = endHumidity;
+    }
+
 
     /**
      * Humidity property for search
      */
-    public Float Humidity;
+    private Float Humidity;
+
+    /**
+     *Get humidity property
+     * @return Humidity
+     */
+    @JsonProperty(value = "Humidity")
+    public Float getHumidity() {
+        return Humidity;
+    }
+
+    /**
+     * Set humidity property
+     * @param humidity Humidity
+     */
+    public void setHumidity(Float humidity) {
+        Humidity = humidity;
+    }
 
     /**
      * Temperature property for search
      */
-    public Float Temperature;
+    private Float Temperature;
 
     /**
-     * Date property for search
+     * Set humidity property
+     * @param temperature Humidity
      */
-    @JsonSerialize(using = DateSerializer.class)
-    public Date Date;
+    public void setTemperature(Float temperature) {
+        Temperature = temperature;
+    }
+
+    /**
+     *Get temperature property
+     * @return Temperature
+     */
+    @JsonProperty(value = "Temperature")
+    public Float getTemperature() {
+        return Temperature;
+    }
+
 
     /**
      * Default constructor
      */
     public DhtSearch() {
+
+    }
+
+    /**
+     * Base constructor
+     * @param beginDate Begin date
+     * @param endDate End date
+     * @param beginTemperature Begin temperature
+     * @param endTemperature End temperature
+     * @param beginHumidity Begin humidity
+     * @param endHumidity End humidity
+     * @param Temperature Temperature
+     * @param Humidity Humidity
+     */
+    public DhtSearch(Optional<Date> beginDate,Optional<Date> endDate,Optional<Float> beginTemperature,
+                     Optional<Float> endTemperature,Optional<Float> beginHumidity,Optional<Float> endHumidity,
+                     Optional<Float> Temperature,Optional<Float> Humidity) {
+        if (beginDate.isPresent())
+            this.beginDate = beginDate.get();
+        if (endDate.isPresent())
+            this.endDate = endDate.get();
+        if (beginTemperature.isPresent())
+            this.beginTemperature = beginTemperature.get();
+        if (endTemperature.isPresent())
+            this.endTemperature = endTemperature.get();
+        if (beginHumidity.isPresent())
+            this.beginHumidity = beginHumidity.get();
+        if (endHumidity.isPresent())
+            this.endHumidity = endHumidity.get();
+        if (Humidity.isPresent())
+            this.Humidity = Humidity.get();
+        if (Temperature.isPresent())
+            this.Temperature = Temperature.get();
 
     }
 
