@@ -20,6 +20,17 @@ public class DHT11_Data extends Entity {
     private float Humidity;
 
     /**
+     * Override <b>toString()</b> operator.
+     * @return  A string, which looks like: <i>"Temperature: %d; Humidity: %d"</i>
+     */
+    @Override
+    public String toString()
+    {
+        return String.format("Temperature: %d; Humidity: %d",this.Temperature,this.Humidity);
+    }
+
+
+    /**
      * Default constructor for creating DHT11 sensor data
      * @param data array of 5 elements, which contains raw sensor data
      */
