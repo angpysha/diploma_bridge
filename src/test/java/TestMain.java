@@ -1,3 +1,19 @@
+/*
+ *    Copyright 2017 Andrew Petrowsky
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 import com.andrewpetrowski.diploma.bridgelib.Controllers.DhtController;
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
 import com.andrewpetrowski.diploma.bridgelib.Models.*;
@@ -9,6 +25,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
@@ -122,7 +139,9 @@ public class TestMain {
             DhtController controller = new DhtController();
 
             DHT11_Data data = new DHT11_Data(24,55);
+
             boolean res = controller.AddAsync(data).get();
+
             int i =0;
         } catch (Exception ex )
         {
@@ -154,6 +173,16 @@ public class TestMain {
         } catch (Exception ex) {
             ex.printStackTrace();
             int i=0;
+        }
+    }
+
+    @Test
+    public void TestGetLast() {
+        try {
+            DHT11_Data data = new DhtController().GetLast(DHT11_Data.class);
+            Assert.assertEquals(data.getTemperature(),24,1e-15);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
