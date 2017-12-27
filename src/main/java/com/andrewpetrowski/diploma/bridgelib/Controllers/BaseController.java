@@ -61,7 +61,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     /**
      * Server url
      */
-    protected String BASE_URL = "http://diplomaapi:8080";
+    protected String BASE_URL = "http://rasp.kl.com.ua/web";
 
     /**
      * Url for Get function
@@ -88,6 +88,11 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      */
     protected String UPDATE_URL = "";
 
+    /**
+     * URL for Get last element
+     */
+
+    protected String GET_LAST_URL = "";
 
     /**
      * Private member needed to async execution
@@ -112,7 +117,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
         try {
             RestApiEx<T, U> searchAp = new RestApiEx<>();
 
-            HttpResponse<JsonNode> dataa = searchAp.SendPostAsync(SEARCH_URL, searchFilter).get();
+            HttpResponse<JsonNode> dataa = searchAp.SendPostAsync(BASE_URL+SEARCH_URL, searchFilter).get();
 
             String tmpStr = dataa.getBody()
                     .getArray()
@@ -145,7 +150,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
         try {
             RestApi<T> restApi = new RestApi<>();
             //      String gg = SEARCH_URL + "/" + Integer.toString(id);
-            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + "/" + GET_URL + "/" + Integer.toString(id), null).get();
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + GET_URL + "/" + Integer.toString(id), null).get();
 
             String tmpStr = response.getBody()
                     .getObject()
@@ -185,7 +190,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public boolean Add(T model) {
         try {
             RestApi<T> restApi = new RestApi<>();
-            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + "/" + ADD_URL, model).get();
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + ADD_URL, model).get();
             String tmpStr = response.getBody()
                     .getObject()
                     .get("result")
@@ -214,7 +219,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public boolean Remove(T model) {
         try {
             RestApi<T> restApi = new RestApi<>();
-            HttpResponse<JsonNode> response = restApi.SendDeleteAsync(String.format("%d/%d", BASE_URL, DELETE_URL), model.getId()).get();
+            HttpResponse<JsonNode> response = restApi.SendDeleteAsync(String.format("%s%s", BASE_URL, DELETE_URL), model.getId()).get();
             String tmpStr = response.getBody()
                     .getObject()
                     .get("result")
@@ -241,7 +246,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public boolean Remove(int id) {
         try {
             RestApi<T> restApi = new RestApi<>();
-            HttpResponse<JsonNode> response = restApi.SendDeleteAsync(String.format("%s/%s", BASE_URL, DELETE_URL), id).get();
+            HttpResponse<JsonNode> response = restApi.SendDeleteAsync(String.format("%s%s", BASE_URL, DELETE_URL), id).get();
             String tmpStr = response.getBody()
                     .getObject()
                     .get("result")
@@ -260,6 +265,35 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
     /**
+     * Gets last table entry
+     * @param className Model class
+     * @return Last table entity entry
+     */
+    public T GetLast(Class<T> className) {
+        try {
+            RestApi<T> restApi = new RestApi<>();
+            //      String gg = SEARCH_URL + "/" + Integer.toString(id);
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + GET_LAST_URL, null).get();
+
+            String tmpStr = response.getBody()
+                    .getObject()
+                    .toString();
+
+
+            return mapper.readValue(tmpStr, className);
+        } catch (UnirestException ex) {
+            return null;
+        } catch (IOException ex) {
+            return null;
+        } catch (InterruptedException e) {
+            return null;
+        } catch (ExecutionException e) {
+            return null;
+        }
+
+    }
+
+    /**
      * Update table entry
      *
      * @param id    Object id
@@ -269,7 +303,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public boolean Update(int id, T model) {
         try {
             RestApi<T> restApi = new RestApi<>();
-            HttpResponse<JsonNode> response = restApi.SendPutAsync(String.format("%s/%s/%d", BASE_URL, UPDATE_URL, id), model).get();
+            HttpResponse<JsonNode> response = restApi.SendPutAsync(String.format("%s%s/%d", BASE_URL, UPDATE_URL, id), model).get();
             String tmpStr = response.getBody()
                     .getObject()
                     .get("result")
@@ -364,5 +398,15 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
         });
     }
 
+    /**
+     * Gets last table entry
+     * @param className Model class
+     * @return Last table entity entry
+     */
+    public Future<T> GetLastAsync(Class<T> className) {
+        return service.submit(() -> {
+           return this.GetLast(className);
+        });
+    }
 
 }

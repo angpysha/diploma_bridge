@@ -35,6 +35,7 @@ public class DhtController extends BaseController<DHT11_Data,DhtSearch> {
         ADD_URL = "/dhts/add";
         UPDATE_URL="/dhts/update";
         DELETE_URL="/dhts/delete";
+        GET_LAST_URL  = "/dhts/last";
     }
 
 
