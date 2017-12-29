@@ -21,8 +21,11 @@ import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
 import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
 import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.http.ObjectMapper;
 import org.json.HTTP;
 import org.json.JSONObject;
 
@@ -48,7 +51,19 @@ public class RestApi<T extends Entity> {
      * Default class constructor
      */
     public RestApi() {
-        this.EnableMapper();
+        //this.EnableMapper();
+    }
+
+    /**
+     * Masked constructor
+     * @param i
+     */
+    public RestApi(int i) {
+
+    }
+
+    static {
+        EnableMapper();
     }
 
     /**
@@ -56,7 +71,7 @@ public class RestApi<T extends Entity> {
      * <p>
      * With the help of this method we can map object to class instance and to json
      */
-    public void EnableMapper() {
+    public static void EnableMapper() {
         Unirest.setObjectMapper(new ObjectMapper() {
             private com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper
                     = new com.fasterxml.jackson.databind.ObjectMapper();
@@ -78,9 +93,22 @@ public class RestApi<T extends Entity> {
                     e.printStackTrace();
                     return null;
                 }
-
             }
-        });
+//            private Gson gson = new GsonBuilder().disableHtmlEscaping()
+//                .create();
+//
+//        @Override
+//        public <T> T readValue(String value, Class<T> valueType) {
+//            return gson.fromJson(value, valueType);
+//        }
+//
+//        @Override
+//        public String writeValue(Object value) {
+//            return gson.toJson(value);
+//        }
+
+    }
+        );
 
     }
 
