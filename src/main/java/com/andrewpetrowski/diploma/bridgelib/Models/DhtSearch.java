@@ -204,4 +204,16 @@ public class DhtSearch extends SearchEntity{
 
     }
 
+    public DhtSearch(Date beginDate,Date endDate,
+                     Float beginTemperature,Float endTemperature,
+                     Float beginHumidity,Float endHumidity)
+    {
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.beginTemperature = beginTemperature;
+        this.endTemperature = endTemperature;
+        this.beginHumidity = beginHumidity;
+        this.endHumidity = endHumidity;
+    }
+
 }
