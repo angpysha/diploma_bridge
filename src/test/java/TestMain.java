@@ -186,5 +186,26 @@ public class TestMain {
         }
     }
 
+    @Test
+    public void TestSearch2() {
+        try {
+            Date date =  Date.from(LocalDate.of(2017, 12, 29).atStartOfDay(ZoneId.systemDefault())
+                    .toInstant());
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE,1);
+            Date after = calendar.getTime();
+
+            DhtSearch search = new DhtSearch(date,after,null,null,null,null);
+
+            List<DHT11_Data> result = new DhtController().SearchAsync(search,DHT11_Data.class).get();
+            int i=0;
+            Assert.assertEquals(result.get(0).getTemperature(),25,1e-3);
+        } catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
+    }
+
 
 }
