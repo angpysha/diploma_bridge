@@ -28,11 +28,13 @@ public class DHT11_Data extends Entity {
     /**
      * This property shows temperature from sensor
      */
+    @JsonProperty(value = "Temperature")
     private float Temperature;
 
     /**
      * This property shows humidity from sensor
      */
+    @JsonProperty(value = "Humidity")
     private float Humidity;
 
     /**
@@ -72,7 +74,7 @@ public class DHT11_Data extends Entity {
      * Get temperature from sensor
      * @return Temperature from sensor at Celsius degree
      */
-    @JsonProperty(value = "Temperature")
+
     public float getTemperature() {
         return Temperature;
     }
@@ -89,7 +91,7 @@ public class DHT11_Data extends Entity {
      * Get humidity from sensor
      * @return Humidity from sensor
      */
-    @JsonProperty(value = "Humidity")
+
     public float getHumidity() {
         return Humidity;
     }

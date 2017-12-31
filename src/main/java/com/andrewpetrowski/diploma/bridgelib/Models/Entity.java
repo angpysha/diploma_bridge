@@ -36,11 +36,13 @@ public abstract class Entity {
     /**
      * Object's creating date
      */
+    @JsonProperty(value = "Created_at")
     protected Date Created_at;
 
     /**
      * Object's updating date
      */
+    @JsonProperty(value = "Updated_at")
     protected Date Updated_at;
 
 
@@ -71,7 +73,7 @@ public abstract class Entity {
      *
      * @return Creation date
      */
-    @JsonProperty(value = "Created_at")
+
     public Date getCreated_at() {
         return Created_at;
     }
@@ -89,7 +91,7 @@ public abstract class Entity {
      * Set update date
      * @param updated_at Update date
      */
-    @JsonProperty(value = "Updated_at")
+
     public void setUpdated_at(Date updated_at) {
         Updated_at = updated_at;
     }
