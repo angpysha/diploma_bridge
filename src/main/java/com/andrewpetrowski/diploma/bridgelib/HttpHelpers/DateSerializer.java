@@ -38,7 +38,7 @@ public class DateSerializer extends JsonSerializer<Date> {
     /**
      * Date format
      */
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Serialization method override

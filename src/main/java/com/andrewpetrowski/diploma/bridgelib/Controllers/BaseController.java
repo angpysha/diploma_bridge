@@ -21,8 +21,13 @@ import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
 import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
 import com.andrewpetrowski.diploma.bridgelib.RestApi;
 import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -48,10 +53,11 @@ import java.util.concurrent.Future;
  */
 public class BaseController<T extends Entity, U extends SearchEntity> {
 
+    private Gson gson;
     /**
      * Date format for right serialization
      */
-    protected SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    protected SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * Object mapper for object serialization
@@ -62,6 +68,8 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      * Server url
      */
     protected String BASE_URL = "http://rasp.kl.com.ua/web";
+//     protected String BASE_URL = "http://diplomaapi:8080";
+
 
     /**
      * Url for Get function
@@ -104,7 +112,11 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      */
     public BaseController() {
         this.mapper.setDateFormat(df);
+//        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+
     }
+
+
 
     /**
      * Search entities in database
@@ -122,17 +134,23 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             String tmpStr = dataa.getBody()
                     .getArray()
                     .toString();
-
-            List<T> list = mapper.readValue(tmpStr, mapper.getTypeFactory().constructCollectionType(List.class, entityClass.getClass()));
-
+            //List<T> list = gson.fromJson(tmpStr,new TypeToken<List<DHT11_Data>>(){}.getType());
+            List<T> list = mapper.readValue(tmpStr,new TypeReference<List<DHT11_Data>>(){});
             return list;
         } catch (UnirestException ex) {
             return null;
-        } catch (IOException ex) {
-            return null;
-        } catch (InterruptedException e) {
+        }  catch (InterruptedException e) {
             return null;
         } catch (ExecutionException e) {
+            return null;
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+            return null;
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
 
