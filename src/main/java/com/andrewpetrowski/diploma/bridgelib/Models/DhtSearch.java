@@ -179,30 +179,7 @@ public class DhtSearch extends SearchEntity{
      * @param endTemperature End temperature
      * @param beginHumidity Begin humidity
      * @param endHumidity End humidity
-     * @param Temperature Temperature
-     * @param Humidity Humidity
      */
-    public DhtSearch(Optional<Date> beginDate,Optional<Date> endDate,Optional<Float> beginTemperature,
-                     Optional<Float> endTemperature,Optional<Float> beginHumidity,Optional<Float> endHumidity,
-                     Optional<Float> Temperature,Optional<Float> Humidity) {
-        if (beginDate.isPresent())
-            this.beginDate = beginDate.get();
-        if (endDate.isPresent())
-            this.endDate = endDate.get();
-        if (beginTemperature.isPresent())
-            this.beginTemperature = beginTemperature.get();
-        if (endTemperature.isPresent())
-            this.endTemperature = endTemperature.get();
-        if (beginHumidity.isPresent())
-            this.beginHumidity = beginHumidity.get();
-        if (endHumidity.isPresent())
-            this.endHumidity = endHumidity.get();
-        if (Humidity.isPresent())
-            this.Humidity = Humidity.get();
-        if (Temperature.isPresent())
-            this.Temperature = Temperature.get();
-
-    }
 
     public DhtSearch(Date beginDate,Date endDate,
                      Float beginTemperature,Float endTemperature,
