@@ -35,6 +35,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -135,7 +136,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
                     .getArray()
                     .toString();
             //List<T> list = gson.fromJson(tmpStr,new TypeToken<List<DHT11_Data>>(){}.getType());
-            List<T> list = mapper.readValue(tmpStr,new TypeReference<List<DHT11_Data>>(){});
+            List<T> list = mapper.readValue(tmpStr,mapper.getTypeFactory().constructCollectionType(List.class,entityClass));
             return list;
         } catch (UnirestException ex) {
             return null;
