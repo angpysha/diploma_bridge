@@ -15,6 +15,7 @@
  */
 
 import com.andrewpetrowski.diploma.bridgelib.Controllers.DhtController;
+import com.andrewpetrowski.diploma.bridgelib.Decorators.DateEx;
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
 import com.andrewpetrowski.diploma.bridgelib.Models.*;
 import com.andrewpetrowski.diploma.bridgelib.RestApi;
@@ -189,15 +190,21 @@ public class TestMain {
     @Test
     public void TestSearch2() {
         try {
-            Date date =  Date.from(LocalDate.of(2017, 12, 29).atStartOfDay(ZoneId.systemDefault())
-                    .toInstant());
+//            Date date =  Date.from(LocalDate.of(2017, 12, 29).atStartOfDay(ZoneId.systemDefault())
+//                    .toInstant());
+            Date date = new Date();
+
+            date = new DateEx(date).ZeroTime();
             Calendar calendar = Calendar.getInstance();
 
             calendar.setTime(date);
-            calendar.add(Calendar.DATE,1);
-            Date after = calendar.getTime();
+            calendar.add(Calendar.DATE,-2);
+            Date before = calendar.getTime();
 
-            DhtSearch search = new DhtSearch(date,after,null,null,null,null);
+            calendar.setTime(date);
+            calendar.set(Calendar.DATE,1);
+            Date after = calendar.getTime();
+            DhtSearch search = new DhtSearch(before,after,null,null,null,null);
 
             List<DHT11_Data> result = new DhtController().SearchAsync(search,DHT11_Data.class).get();
             int i=0;
