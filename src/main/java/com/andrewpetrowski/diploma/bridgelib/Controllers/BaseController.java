@@ -228,8 +228,44 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
     /**
+     * Add list of objects to database
+     * @param data List of obects
+     * @return Operation result
+     */
+    public Boolean Add(List<T> data) {
+            RestApi<T> api = new RestApi<>();
+
+            List<Boolean> res = new LinkedList<>();
+
+            data.forEach(it -> {
+                HttpResponse<JsonNode> response = null;
+                try {
+                    response = api.SendPostAsync(BASE_URL + ADD_URL, it).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (UnirestException e) {
+                    e.printStackTrace();
+                }
+                String tmpStr = response.getBody()
+                        .getObject()
+                        .get("result")
+                        .toString();
+
+                try {
+                    res.add(mapper.readValue(tmpStr, Boolean.class));
+                } catch (IOException e) {
+
+                }
+            });
+
+            return !res.contains(false);
+
+    }
+
+    /**
      * Delete an entry from table
-     *
      * @param model Object entry
      * @return Operation success
      */
@@ -415,6 +451,12 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public Future<T> GetLastAsync(Class<T> className) {
         return service.submit(() -> {
            return this.GetLast(className);
+        });
+    }
+
+    public Future<Boolean> AddAsync(List<T> data) {
+        return service.submit(() -> {
+            return this.Add(data);
         });
     }
 
