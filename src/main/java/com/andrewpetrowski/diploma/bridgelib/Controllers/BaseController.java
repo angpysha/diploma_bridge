@@ -112,7 +112,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      */
     public BaseController() {
         this.mapper.setDateFormat(df);
-//        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+        gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 
     }
 
@@ -201,7 +201,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Add new row to database
-     *
      * @param model Table model
      * @return <b>Boolean</b> result of operation result
      */
@@ -257,7 +256,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
-     *
      * @param id Object id
      * @return Operation success
      */
@@ -313,7 +311,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Update table entry
-     *
      * @param id    Object id
      * @param model Entry model
      * @return Operation success
@@ -343,7 +340,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Update table entry
-     *
      * @param id    Object id
      * @param model Entry model
      * @return Operation success
@@ -356,7 +352,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
-     *
      * @param id Object id
      * @return Operation success
      */
@@ -368,7 +363,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
-     *
      * @param model Object model
      * @return Operation success
      */
@@ -380,7 +374,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Add new row to database
-     *
      * @param model Table model
      * @return <b>Boolean</b> result of operation result
      */
@@ -392,7 +385,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Search entities in database
-     *
      * @param filter Search filter class
      * @param entityClass  Entity model
      * @return <b>List<T></b> which contains models
@@ -405,7 +397,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Get object by id
-     *
      * @param id        <b>Integer</b> value, which equals database <i>id</i> column
      * @param tClass Class to cast
      * @return Casted class instance
