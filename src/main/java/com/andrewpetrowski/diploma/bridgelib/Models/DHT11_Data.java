@@ -18,6 +18,8 @@ package com.andrewpetrowski.diploma.bridgelib.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 /**
  * Model which store DHT11 sensor data (humidity and temperature)
  * @author Andrew Petrowsky
@@ -55,19 +57,24 @@ public class DHT11_Data extends Entity {
     public DHT11_Data(int[] data) {
         this.Humidity = (float) ((data[0] << 8) + data[1]) / 10;
         this.Temperature = (float) (((data[2] & 0x7F) << 8) + data[3]) / 10;
+        this.Created_at = new Date();
+        this.Updated_at = new Date();
 
     }
 
     public DHT11_Data(float temperature,float humidity) {
         this.Temperature = temperature;
         this.Humidity = humidity;
+        this.Created_at = new Date();
+        this.Updated_at = new Date();
     }
 
     /**
      * Dummy constructor for DHT11 sensor data
      */
     public DHT11_Data() {
-
+        this.Created_at = new Date();
+        this.Updated_at = new Date();
     }
 
     /**

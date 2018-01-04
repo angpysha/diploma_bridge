@@ -17,7 +17,9 @@
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
 
+import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.DateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 
@@ -37,12 +39,14 @@ public abstract class Entity {
      * Object's creating date
      */
     @JsonProperty(value = "Created_at")
+    @JsonSerialize(using = DateSerializer.class)
     protected Date Created_at;
 
     /**
      * Object's updating date
      */
     @JsonProperty(value = "Updated_at")
+    @JsonSerialize(using = DateSerializer.class)
     protected Date Updated_at;
 
 
