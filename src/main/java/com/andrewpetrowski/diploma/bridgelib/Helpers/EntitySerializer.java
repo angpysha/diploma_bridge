@@ -181,6 +181,15 @@ public class EntitySerializer<T extends Entity> {
         });
     }
 
+    /**
+     * Read data from JSON file to <b>List<T></b>
+     * @param path File path
+     * @param type Java type
+     * @return List of objects <br/> <br/>
+     * <b>Example</b> <br/> <br/>
+     * {@code
+     * List<DHT11_Data> data = serializer.FromJsonFileToListAsync(path,(new TypeToken<List<DHT11_Data>>(){}).getType())}
+     */
     public Future<List<T>> FromJsonFileToListAsync(String path,Type type) {
         return service.submit(() -> {
             return this.FromJsonFileToList(path,type);

@@ -19,13 +19,26 @@ package com.andrewpetrowski.diploma.bridgelib.Decorators;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Decorator for date for advanced functionality
+ * @author Andrew Petrowsky
+ * @version 0.3
+ */
 public class DateEx extends Date {
     protected Date dateEx;
 
+    /**
+     * Create class instance
+     * @param date Date object
+     */
     public DateEx(Date date) {
         this.dateEx = date;
     }
 
+    /**
+     * Set time to 00:00:00
+     * @return Date obejct with this time
+     */
     public Date ZeroTime() {
         Calendar calendar = Calendar.getInstance();
 
@@ -38,10 +51,18 @@ public class DateEx extends Date {
         return calendar.getTime();
     }
 
+    /**
+     * Get date object
+     * @return Date object
+     */
     public Date getDateEx() {
         return dateEx;
     }
 
+    /**
+     * Set date object
+     * @param dateEx Date object
+     */
     public void setDateEx(Date dateEx) {
         this.dateEx = dateEx;
     }
