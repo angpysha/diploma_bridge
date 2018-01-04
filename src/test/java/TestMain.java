@@ -139,9 +139,13 @@ public class TestMain {
         try {
             DhtController controller = new DhtController();
 
-            DHT11_Data data = new DHT11_Data(24,55);
+            DHT11_Data data = new DHT11_Data(27,64);
 
             boolean res = controller.AddAsync(data).get();
+
+            DHT11_Data last = controller.GetLast(DHT11_Data.class);
+            Assert.assertEquals(res,true);
+            Assert.assertEquals(last.getTemperature(),22,1e-5);
 
             int i =0;
         } catch (Exception ex )
