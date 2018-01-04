@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0) 
 [![Build Status](https://travis-ci.org/angpysha/diploma_bridge.svg?branch=master)](https://travis-ci.org/angpysha/diploma_bridge)
-[![Stage](https://img.shields.io/badge/stage-alpha-red.svg)]()
+[![Stage](https://img.shields.io/badge/stage-alpha-red.svg)](https://github.com/angpysha/diploma_bridge)
 
 The library, which contains API and models for interaction Raspberry Pi app 
 and Android app with server.
