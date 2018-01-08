@@ -124,7 +124,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      *
      * @param searchFilter Search filter class
      * @param entityClass  Entity model
-     * @return <b>List<T></b> which contains models
+     * @return <b>List</b> which contains models
      */
     public List<T> Search(U searchFilter, Class<? extends Entity> entityClass) {
         try {
@@ -424,7 +424,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      * Search entities in database
      * @param filter Search filter class
      * @param entityClass  Entity model
-     * @return <b>List<T></b> which contains models
+     * @return <b>List</b> which contains models
      */
     public Future<List<T>> SearchAsync(U filter, Class<? extends Entity> entityClass) {
         return service.submit(() -> {

@@ -25,6 +25,9 @@ import java.util.Date;
  * @version 0.3
  */
 public class DateEx extends Date {
+    /**
+     * Date object
+     */
     protected Date dateEx;
 
     /**

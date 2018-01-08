@@ -62,6 +62,7 @@ public class URLParams {
 
     /**
      * Convert URLParams object to string
+     * @param parameters URL parameters
      * @return URL like params string
      */
     public static final String FromURLParametesToString(URLParams parameters)

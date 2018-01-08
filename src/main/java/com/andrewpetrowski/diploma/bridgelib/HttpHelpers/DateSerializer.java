@@ -45,8 +45,8 @@ public class DateSerializer extends JsonSerializer<Date> {
      * @param date Date, needed for serialization
      * @param gen   Json generator instance
      * @param provider  Serialization provider
-     * @throws IOException
-     * @throws JsonProcessingException
+     * @throws IOException  Java exception
+     * @throws JsonProcessingException Error parsing JSON
      */
     @Override
     public void serialize(Date date, JsonGenerator gen, SerializerProvider provider)

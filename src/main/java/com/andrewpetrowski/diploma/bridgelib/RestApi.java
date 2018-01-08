@@ -56,7 +56,7 @@ public class RestApi<T extends Entity> {
 
     /**
      * Masked constructor
-     * @param i
+     * @param i dumy parameter
      */
     public RestApi(int i) {
 
@@ -120,7 +120,7 @@ public class RestApi<T extends Entity> {
      * @param url  Site URL
      * @param data Request data
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, T data) throws UnirestException {
         return Unirest.post(url)
@@ -133,7 +133,7 @@ public class RestApi<T extends Entity> {
      *
      * @param data Request data
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(T data) throws UnirestException {
         return Unirest.post(API_URL)
@@ -148,7 +148,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(T data, Headers headers) throws UnirestException {
         return Unirest.post(API_URL)
@@ -164,7 +164,7 @@ public class RestApi<T extends Entity> {
      * @param data   Request data
      * @param header Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, T data, Headers header) throws UnirestException {
         return Unirest.post(url)
@@ -180,7 +180,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, T data, Map<String, String> headers) throws UnirestException {
         return Unirest.post(url)
@@ -195,7 +195,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(T data, Map<String, String> headers) throws UnirestException {
         return Unirest.post(API_URL)
@@ -212,7 +212,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, T data, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -230,7 +230,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, T data, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -247,7 +247,7 @@ public class RestApi<T extends Entity> {
      * @param headers   Request headers
      * @param urlParams URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(T data, Map<String, String> headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
@@ -265,7 +265,7 @@ public class RestApi<T extends Entity> {
      * @param headers   Request headers
      * @param urlParams URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(T data, Headers headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
@@ -282,7 +282,7 @@ public class RestApi<T extends Entity> {
      *
      * @param data Request data
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(T data) throws UnirestException {
         return Unirest.post(API_URL)
@@ -296,7 +296,7 @@ public class RestApi<T extends Entity> {
      * @param url  Site URL
      * @param data Request data
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data) throws UnirestException {
         return Unirest.post(url)
@@ -310,7 +310,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers) throws UnirestException {
         return Unirest.post(API_URL)
@@ -324,8 +324,9 @@ public class RestApi<T extends Entity> {
      *
      * @param url  Site URL
      * @param data Request data
+     * @param header Header parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Headers header) throws UnirestException {
         return Unirest.post(url)
@@ -341,7 +342,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Map<String, String> headers) throws UnirestException {
         return Unirest.post(url)
@@ -356,7 +357,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Map<String, String> headers) throws UnirestException {
         return Unirest.post(API_URL)
@@ -373,7 +374,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -391,7 +392,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -408,7 +409,7 @@ public class RestApi<T extends Entity> {
      * @param headers   Request headers
      * @param urlParams URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Map<String, String> headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
@@ -426,7 +427,7 @@ public class RestApi<T extends Entity> {
      * @param headers   Request headers
      * @param urlParams URL parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
@@ -446,7 +447,7 @@ public class RestApi<T extends Entity> {
      *
      * @param url Site URL
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendGet(String url) throws UnirestException {
         return Unirest.get(url)
@@ -459,7 +460,7 @@ public class RestApi<T extends Entity> {
      * @param url     Site URL
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendGet(String url, Headers headers) throws UnirestException {
         return Unirest.get(url)
@@ -473,7 +474,7 @@ public class RestApi<T extends Entity> {
      * @param url     Site URL
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendGet(String url, Map<String, String> headers) throws UnirestException {
         return Unirest.get(url)
@@ -488,7 +489,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendGet(String url, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -504,7 +505,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendGet(String url, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -520,7 +521,7 @@ public class RestApi<T extends Entity> {
      *
      * @param url Site URL
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendGetAsync(String url) throws UnirestException {
         return Unirest.get(url)
@@ -533,7 +534,7 @@ public class RestApi<T extends Entity> {
      * @param url     Site URL
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Headers headers) throws UnirestException {
         return Unirest.get(url)
@@ -547,7 +548,7 @@ public class RestApi<T extends Entity> {
      * @param url     Site URL
      * @param headers Request headers
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Map<String, String> headers) throws UnirestException {
         return Unirest.get(url)
@@ -562,7 +563,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -578,7 +579,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as json object
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -599,7 +600,7 @@ public class RestApi<T extends Entity> {
      * @param url  Site URL
      * @param data Request data
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data) throws UnirestException {
         return Unirest.put(url)
@@ -612,7 +613,7 @@ public class RestApi<T extends Entity> {
      *
      * @param data Request data
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data) throws UnirestException {
         return Unirest.put(API_URL)
@@ -627,7 +628,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data, Headers headers) throws UnirestException {
         return Unirest.put(url)
@@ -643,7 +644,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data, Map<String, String> headers) throws UnirestException {
         return Unirest.put(url)
@@ -657,7 +658,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data, Headers headers) throws UnirestException {
         return Unirest.put(API_URL)
@@ -671,7 +672,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data, Map<String, String> headers) throws UnirestException {
         return Unirest.put(API_URL)
@@ -687,7 +688,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -705,7 +706,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -721,7 +722,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data, Headers headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -737,7 +738,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data, Map<String, String> headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -752,7 +753,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(T data, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -767,7 +768,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPut(String url, T data, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -784,7 +785,7 @@ public class RestApi<T extends Entity> {
      * @param url  Site URL
      * @param data Request data
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data) throws UnirestException {
         return Unirest.put(url)
@@ -797,7 +798,7 @@ public class RestApi<T extends Entity> {
      *
      * @param data Request data
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data) throws UnirestException {
         return Unirest.put(API_URL)
@@ -812,7 +813,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Headers headers) throws UnirestException {
         return Unirest.put(url)
@@ -828,7 +829,7 @@ public class RestApi<T extends Entity> {
      * @param data    Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Map<String, String> headers) throws UnirestException {
         return Unirest.put(url)
@@ -842,7 +843,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Headers headers) throws UnirestException {
         return Unirest.put(API_URL)
@@ -856,7 +857,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param headers Request headers
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Map<String, String> headers) throws UnirestException {
         return Unirest.put(API_URL)
@@ -872,7 +873,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -890,7 +891,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Map<String, String> headers, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -906,7 +907,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Headers headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -922,7 +923,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Map<String, String> headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -937,7 +938,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(T data, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
@@ -952,7 +953,7 @@ public class RestApi<T extends Entity> {
      * @param data Request data
      * @param params Request parameters
      * @return Server response as JSON
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, URLParams params) throws UnirestException {
         url = url + params.toString();
@@ -970,7 +971,7 @@ public class RestApi<T extends Entity> {
      * @param url Site url
      * @param id Object id
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendDelete(String url,int id) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -984,7 +985,7 @@ public class RestApi<T extends Entity> {
      * @param id Object id
      * @param headers Request headers
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendDelete(String url,int id, Headers headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -999,7 +1000,7 @@ public class RestApi<T extends Entity> {
      * @param id Object id
      * @param headers Request headers
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendDelete(String url, int id, Map<String,String> headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1015,7 +1016,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request URL parameters
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendDelete(String url,int id,Headers headers,URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1032,7 +1033,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request URL parameters
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendDelete(String url, int id, Map<String,String> headers,URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1048,7 +1049,7 @@ public class RestApi<T extends Entity> {
      * @param url Site url
      * @param id Object id
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1062,7 +1063,7 @@ public class RestApi<T extends Entity> {
      * @param id Object id
      * @param headers Request headers
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id, Headers headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1077,7 +1078,7 @@ public class RestApi<T extends Entity> {
      * @param id Object id
      * @param headers Request headers
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url, int id, Map<String,String> headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1093,7 +1094,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request URL parameters
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id,Headers headers,URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);
@@ -1110,7 +1111,7 @@ public class RestApi<T extends Entity> {
      * @param headers Request headers
      * @param params  Request URL parameters
      * @return  Json value, which contains the result of operation;
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url, int id, Map<String,String> headers,URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);

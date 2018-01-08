@@ -52,7 +52,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      * @param url Site URL
      * @param data Filter data
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url,U data) throws UnirestException {
         return Unirest.post(url)
@@ -66,7 +66,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      * @param data Filter data
      * @param headers Request headers
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(String url, U data, Headers headers) throws UnirestException {
         return Unirest.post(url)
@@ -80,7 +80,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      *Send POST request
      * @param data Filter data
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public HttpResponse<JsonNode> SendPost(U data) throws UnirestException {
         return Unirest.post(API_URL)
@@ -93,7 +93,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      * @param url Site URL
      * @param data Filter data
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url, U data) throws UnirestException {
         return Unirest.post(url)
@@ -105,7 +105,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      * Send POST request
      * @param data Filter data
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(U data) throws UnirestException {
         return Unirest.post(API_URL)
@@ -119,7 +119,7 @@ public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<
      * @param data Filter data
      * @param headers Request headers
      * @return Json element
-     * @throws UnirestException
+     * @throws UnirestException Error was occurred, when send query
      */
     public Future<HttpResponse<JsonNode>> SendPostAsync(String url,U data,Headers headers) throws UnirestException {
         return Unirest.post(url)

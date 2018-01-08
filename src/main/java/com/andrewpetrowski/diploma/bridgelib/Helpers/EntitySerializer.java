@@ -31,7 +31,7 @@ import java.util.concurrent.Future;
 
 /**
  * Helps to selrialize Entity object to JSON file
- * @param <T>
+ * @param <T> Entity class object
  */
 public class EntitySerializer<T extends Entity> {
 
@@ -48,10 +48,10 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Convert <b>List<T></b> to JSON file
+     * Convert <b>List</b> to JSON file
      * @param data List of objects
      * @param path File path
-     * @return
+     * @return Operation result
      */
     public Boolean ListToJsonFile(List<T> data, String path) {
         Type listType = new TypeToken<List<T>>() {
@@ -66,7 +66,7 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Read data from JSON file to <b>List<T></b>
+     * Read data from JSON file to <b>List</b>
      * @param path File path
      * @param tClass Java class
      * @return List of objects
@@ -84,7 +84,7 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Read data from JSON file to <b>List<T></b>
+     * Read data from JSON file to <b>List</b>
      * @param path File path
      * @param type Type
      * @return List of objects
@@ -132,7 +132,7 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Read data from JSON file to <b>List<T></b>
+     * Read data from JSON file to <b>List</b>
      * @param path File path
      * @param tClass Java class
      * @return List of objects
@@ -145,10 +145,10 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Convert <b>List<T></b> to JSON file
+     * Convert <b>List</b> to JSON file
      * @param data List of objects
      * @param path File path
-     * @return
+     * @return Operation result
      */
     public Future<Boolean> ListToJsonFileAsync(List<T> data, String path) {
         return service.submit(() -> {
@@ -182,11 +182,11 @@ public class EntitySerializer<T extends Entity> {
     }
 
     /**
-     * Read data from JSON file to <b>List<T></b>
+     * Read data from JSON file to <b>List</b>
      * @param path File path
      * @param type Java type
-     * @return List of objects <br/> <br/>
-     * <b>Example</b> <br/> <br/>
+     * @return List of objects <br> <br>
+     * <b>Example</b> <br> <br>
      * {@code
      * List<DHT11_Data> data = serializer.FromJsonFileToListAsync(path,(new TypeToken<List<DHT11_Data>>(){}).getType())}
      */
