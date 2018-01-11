@@ -38,14 +38,12 @@ public abstract class Entity {
     /**
      * Object's creating date
      */
-    @JsonProperty(value = "Created_at")
     @JsonSerialize(using = DateSerializer.class)
     protected Date Created_at;
 
     /**
      * Object's updating date
      */
-    @JsonProperty(value = "Updated_at")
     @JsonSerialize(using = DateSerializer.class)
     protected Date Updated_at;
 
@@ -77,7 +75,7 @@ public abstract class Entity {
      *
      * @return Creation date
      */
-
+    @JsonProperty(value = "Created_at")
     public Date getCreated_at() {
         return Created_at;
     }
@@ -104,6 +102,7 @@ public abstract class Entity {
      * Get update date
      * @return Update date
      */
+    @JsonProperty(value = "Updated_at")
     public Date getUpdated_at() {
         return Updated_at;
     }
