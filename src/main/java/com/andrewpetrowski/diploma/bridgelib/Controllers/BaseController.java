@@ -104,6 +104,11 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     protected String GET_LAST_URL = "";
 
     /**
+     * URL for get datesCount
+     */
+    protected String GET_SIZE_URL = "";
+
+    /**
      * Private member needed to async execution
      */
     private ExecutorService service = Executors.newSingleThreadExecutor();
@@ -157,6 +162,33 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     }
 
+    public Integer GetDatesCount() {
+        try {
+            RestApi<T> restApi = new RestApi<>();
+            HttpResponse<JsonNode> node = restApi.SendPost(BASE_URL + GET_SIZE_URL,null);
+
+            String tmpsStr = node.getBody()
+                                .getObject()
+                                .get("pages")
+                                .toString();
+
+            return mapper.readValue(tmpsStr,Integer.class);
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return null;
+        } catch (JsonParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     /**
      * Get object by id
@@ -174,7 +206,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             String tmpStr = response.getBody()
                     .getObject()
                     .toString();
-
 
             return mapper.readValue(tmpStr, className);
         } catch (UnirestException ex) {
@@ -223,8 +254,10 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             return false;
         } catch (InterruptedException e) {
             return false;
+          //  e.printStackTrace();
         } catch (ExecutionException e) {
             return false;
+            //e.printStackTrace();
         }
     }
 
