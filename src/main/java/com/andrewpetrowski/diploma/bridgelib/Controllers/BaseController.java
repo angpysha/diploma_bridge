@@ -16,21 +16,17 @@
 
 package com.andrewpetrowski.diploma.bridgelib.Controllers;
 
-import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
+import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
 import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
 import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
 import com.andrewpetrowski.diploma.bridgelib.RestApi;
-import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;

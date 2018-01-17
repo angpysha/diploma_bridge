@@ -16,13 +16,11 @@
 
 import com.andrewpetrowski.diploma.bridgelib.Helpers.EntitySerializer;
 import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

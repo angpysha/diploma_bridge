@@ -17,23 +17,18 @@
 import com.andrewpetrowski.diploma.bridgelib.Controllers.DhtController;
 import com.andrewpetrowski.diploma.bridgelib.Decorators.DateEx;
 import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
-import com.andrewpetrowski.diploma.bridgelib.Models.*;
-import com.andrewpetrowski.diploma.bridgelib.RestApi;
+import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
+import com.andrewpetrowski.diploma.bridgelib.Models.DhtSearch;
 import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Headers;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.JSONArray;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
