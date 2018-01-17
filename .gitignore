@@ -2,3 +2,6 @@
 out/
 build/
 .gradle/
+artifacts/
+secring.gpg
+tmp/
