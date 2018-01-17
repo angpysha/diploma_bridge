@@ -1,7 +1,7 @@
 
-com.andrewpetrowski.diploma.bridgelib
-com.andrewpetrowski.diploma.bridgelib.Controllers
-com.andrewpetrowski.diploma.bridgelib.Decorators
-com.andrewpetrowski.diploma.bridgelib.Helpers
-com.andrewpetrowski.diploma.bridgelib.HttpHelpers
-com.andrewpetrowski.diploma.bridgelib.Models
+io.github.angpysha.diploma_bridge
+io.github.angpysha.diploma_bridge.Controllers
+io.github.angpysha.diploma_bridge.Decorators
+io.github.angpysha.diploma_bridge.Helpers
+io.github.angpysha.diploma_bridge.HttpHelpers
+io.github.angpysha.diploma_bridge.Models
