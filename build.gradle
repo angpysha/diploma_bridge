@@ -5,77 +5,12 @@ apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+group = 'com.andrewpetrowski.diploma'
+archivesBaseName = 'diploma-bridge'
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-}
-
-
-tasks.withType(Jar) {
-    from(project.projectDir) {
-        include 'LICENSE.md'
-        into 'META-INF'
-    }
-}
-
-dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    // https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
-    implementation group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
-// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
-    implementation 'com.google.code.gson:gson:2.8.1'
-
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            pom.withXml {
-                asNode().with {
-                    appendNode('packaging', 'jar')
-                    appendNode('name', 'Diploma bridge')
-                    appendNode('description', 'Bridge library between Raspberry application and Android')
-                    appendNode('url', 'https://github.com/angpysha/diploma_bridge')
-                    appendNode('scm').with {
-                        appendNode('url', 'https://github.com/angpysha/diploma_bridge')
-                        appendNode('connection', 'scm:git:git@github.com:angpysha/diploma_bridge.git')
-                    }
-
-                    appendNode('licenses').with {
-                        appendNode('license').with {
-                            appendNode('name', 'Apache 2.0')
-                            appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0')
-                        }
-                    }
-                    appendNode('developers').with {
-                        appendNode('developer').with {
-                            appendNode('id', 'andrewpetrowski')
-                            appendNode('name', 'Andrew Petrowsky')
-                            appendNode('email', 'angpysha@gmail.com')
-                        }
-                    }
-                }
-            }
-            groupId 'com.andrewpetrowski.diploma'
-            artifactId 'bridgelib'
-            version '0.3'
-            artifact sourceJar
-            artifact javadocJar
-            from components.java
-        }
-    }
-
-    repositories {
-        maven {
-            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-            credentials {
-                username 'andrewpetrowsky'
-                password 'Zukabara234!'
-            }
-        }
-    }
 }
 
 task sourceJar(type: Jar, dependsOn: classes) {
@@ -87,3 +22,211 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
+artifacts {
+    archives javadocJar, sourceJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+//ext {
+//    pomFilePath = "${project.projectDir}/tmp/pom.xml"
+//    pomFile = file(pomFilePath)
+//}
+//
+//configurations {
+//    pom
+//}
+
+//artifacts {
+//    archives jar
+//    archives sourceJar
+//    archives javadocJar
+//    if (pomFile.exists()) {
+//        pom pomFile
+//    }
+//}
+
+//task signJars (type : Sign, dependsOn: [jar, javadocJar, sourceJar]) {
+//    sign configurations.archives
+//}
+
+//// sign pom
+//task signPom(type: Sign) {
+//    sign configurations.pom
+//}
+//// defining which tasks should be called
+//if (project.ext.pomFile.exists()) {
+//    task preparePublication (dependsOn : [signJars, signPom])
+//} else {
+//    task preparePublication (dependsOn : signJars)
+//}
+
+//def getSignatureFiles = {
+//    def allFiles = project.tasks.signJars.signatureFiles.collect { it }
+//    def signedSources = allFiles.find { it.name.contains('-sources') }
+//    def signedJavadoc = allFiles.find { it.name.contains('-javadoc') }
+//    def signedJar = (allFiles - [signedSources, signedJavadoc])[0]
+//    return [
+//            [archive: signedSources, classifier: 'sources', extension: 'jar.asc'],
+//            [archive: signedJavadoc, classifier: 'javadoc', extension: 'jar.asc'],
+//            [archive: signedJar,     classifier: null,      extension: 'jar.asc']
+//    ]
+//}
+
+//// extract pom signature
+//def getPomSignature = {
+//    return project.tasks.signPom.signatureFiles.collect{it}[0]
+//}
+//
+//
+//tasks.withType(Jar) {
+//    from(project.projectDir) {
+//        include 'LICENSE.md'
+//        into 'META-INF'
+//    }
+//}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
+    implementation group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    implementation 'com.google.code.gson:gson:2.8.1'
+
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: mavenUser, password: mavenPass)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: mavenUser, password: mavenPass)
+            }
+
+            pom.project {
+                name 'Bridge application'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Library is using as bridge between Raspberry PI and Android'
+                url 'https://angpysha.github.io/diploma_bridge/'
+
+                scm {
+                    connection 'scm:git:git@github.com:angpysha/diploma_bridge.git'
+                    url 'https://github.com/angpysha/diploma_bridge'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'andrewpetrowsky'
+                        name 'Andrew Petrowsky'
+                        email 'angpysha@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//publishing {
+//    publications {
+//        gpgJars(MavenPublication) {
+//            getSignatureFiles().each {signature ->
+//                artifact (signature.archive) {
+//                    classifier = signature.classifier
+//                    extension  = signature.extension
+//                }
+//            }
+//        }
+//        if (project.ext.pomFile.exists()) {
+//            gpgPom(MavenPublication) {
+//                artifact (getPomSignature()) {
+//                    classifier = null
+//                    extension  = 'pom.asc'
+//                }
+//            }
+//        }
+//        jar(MavenPublication) {
+//            from components.java
+//            pom.withXml {
+//                asNode().with {
+//                    appendNode('packaging', 'jar')
+//                    appendNode('name', 'Diploma bridge')
+//                    appendNode('description', 'Bridge library between Raspberry application and Android')
+//                    appendNode('url', 'https://github.com/angpysha/diploma_bridge')
+//                    appendNode('scm').with {
+//                        appendNode('url', 'https://github.com/angpysha/diploma_bridge')
+//                        appendNode('connection', 'scm:git:git@github.com:angpysha/diploma_bridge.git')
+//                    }
+//
+//                    appendNode('licenses').with {
+//                        appendNode('license').with {
+//                            appendNode('name', 'Apache 2.0')
+//                            appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0')
+//                        }
+//                    }
+//                    appendNode('developers').with {
+//                        appendNode('developer').with {
+//                            appendNode('id', 'andrewpetrowski')
+//                            appendNode('name', 'Andrew Petrowsky')
+//                            appendNode('email', 'angpysha@gmail.com')
+//                        }
+//                    }
+//                }
+//                if (!project.ext.pomFile.exists()) {
+//                    writeTo (project.ext.pomFile)
+//                }
+//            }
+//            groupId 'com.andrewpetrowski.diploma'
+//            artifactId 'bridgelib'
+//            version '0.3'
+//            artifact (sourceJar) {
+//                classifier = 'sources'
+//            }
+//            artifact (javadocJar) {
+//                classifier = 'javadoc'
+//            }
+//
+//        }
+//
+//
+//    }
+//
+//    repositories {
+//        maven {
+//            if (project.ext.pomFile.exists()) {
+//                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+//                credentials {
+//                    username = mavenUser
+//                    password = mavenPass
+//                }
+//            } else {
+//                url "file:/${project.projectDir}/artifacts"
+//            }
+//        }
+////        maven {
+//            //url
+////            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+////            credentials {
+////                username 'andrewpetrowsky'
+////                password 'Zukabara234!'
+////            }
+////        }
+//    }
+//}
