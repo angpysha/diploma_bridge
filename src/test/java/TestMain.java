@@ -14,12 +14,12 @@
  *    limitations under the License.
  */
 
-import com.andrewpetrowski.diploma.bridgelib.Controllers.DhtController;
-import com.andrewpetrowski.diploma.bridgelib.Decorators.DateEx;
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
-import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
-import com.andrewpetrowski.diploma.bridgelib.Models.DhtSearch;
-import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
+import io.github.angpysha.diploma_bridge.Controllers.DhtController;
+import io.github.angpysha.diploma_bridge.Decorators.DateEx;
+import io.github.angpysha.diploma_bridge.HttpHelpers.URLParams;
+import io.github.angpysha.diploma_bridge.Models.DHT11_Data;
+import io.github.angpysha.diploma_bridge.Models.DhtSearch;
+import io.github.angpysha.diploma_bridge.RestApiEx;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Headers;
 import com.mashape.unirest.http.HttpResponse;

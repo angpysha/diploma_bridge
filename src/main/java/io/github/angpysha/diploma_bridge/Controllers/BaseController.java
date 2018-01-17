@@ -14,12 +14,12 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Controllers;
+package io.github.angpysha.diploma_bridge.Controllers;
 
-import com.andrewpetrowski.diploma.bridgelib.RestApiEx;
-import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
-import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
-import com.andrewpetrowski.diploma.bridgelib.RestApi;
+import io.github.angpysha.diploma_bridge.RestApiEx;
+import io.github.angpysha.diploma_bridge.Models.Entity;
+import io.github.angpysha.diploma_bridge.Models.SearchEntity;
+import io.github.angpysha.diploma_bridge.RestApi;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

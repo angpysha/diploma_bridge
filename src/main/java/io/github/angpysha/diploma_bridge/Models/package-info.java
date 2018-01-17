@@ -17,4 +17,4 @@
 /**
  * This package has models for searching and database data
  */
-package com.andrewpetrowski.diploma.bridgelib.Models;
+package io.github.angpysha.diploma_bridge.Models;

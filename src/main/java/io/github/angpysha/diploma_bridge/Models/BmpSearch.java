@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Models;
+package io.github.angpysha.diploma_bridge.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

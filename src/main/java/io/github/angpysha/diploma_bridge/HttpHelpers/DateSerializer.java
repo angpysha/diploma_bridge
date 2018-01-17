@@ -15,7 +15,7 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.HttpHelpers;
+package io.github.angpysha.diploma_bridge.HttpHelpers;
 
 
 import com.fasterxml.jackson.core.JsonGenerator;

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Decorators;
+package io.github.angpysha.diploma_bridge.Decorators;
 
 import java.util.Calendar;
 import java.util.Date;

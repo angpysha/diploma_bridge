@@ -16,4 +16,4 @@
 /**
  * Contains decorators for different classes
  */
-package com.andrewpetrowski.diploma.bridgelib.Decorators;
+package io.github.angpysha.diploma_bridge.Decorators;

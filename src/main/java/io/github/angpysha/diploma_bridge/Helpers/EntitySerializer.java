@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Helpers;
+package io.github.angpysha.diploma_bridge.Helpers;
 
-import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
+import io.github.angpysha.diploma_bridge.Models.Entity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

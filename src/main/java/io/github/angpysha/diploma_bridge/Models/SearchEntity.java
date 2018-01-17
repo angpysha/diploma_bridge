@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Models;
+package io.github.angpysha.diploma_bridge.Models;
 
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.DateSerializer;
+import io.github.angpysha.diploma_bridge.HttpHelpers.DateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

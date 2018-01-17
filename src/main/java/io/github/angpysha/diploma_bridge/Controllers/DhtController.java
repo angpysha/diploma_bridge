@@ -14,10 +14,10 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Controllers;
+package io.github.angpysha.diploma_bridge.Controllers;
 
-import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
-import com.andrewpetrowski.diploma.bridgelib.Models.DhtSearch;
+import io.github.angpysha.diploma_bridge.Models.DHT11_Data;
+import io.github.angpysha.diploma_bridge.Models.DhtSearch;
 
 /**
  * This class provides access to DHT11 database table at server

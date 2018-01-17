@@ -14,9 +14,9 @@
  *    limitations under the License.
  */
 
-import com.andrewpetrowski.diploma.bridgelib.Controllers.BmpController;
-import com.andrewpetrowski.diploma.bridgelib.Models.Bmp180_Data;
-import com.andrewpetrowski.diploma.bridgelib.Models.BmpSearch;
+import io.github.angpysha.diploma_bridge.Controllers.BmpController;
+import io.github.angpysha.diploma_bridge.Models.Bmp180_Data;
+import io.github.angpysha.diploma_bridge.Models.BmpSearch;
 import org.junit.Assert;
 import org.junit.Test;
 

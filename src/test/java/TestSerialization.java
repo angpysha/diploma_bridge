@@ -14,8 +14,8 @@
  *    limitations under the License.
  */
 
-import com.andrewpetrowski.diploma.bridgelib.Helpers.EntitySerializer;
-import com.andrewpetrowski.diploma.bridgelib.Models.DHT11_Data;
+import io.github.angpysha.diploma_bridge.Helpers.EntitySerializer;
+import io.github.angpysha.diploma_bridge.Models.DHT11_Data;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.Test;

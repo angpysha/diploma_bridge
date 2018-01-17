@@ -17,4 +17,4 @@
 /**
  * This library contains all functionality to provide correct work with API
  */
-package com.andrewpetrowski.diploma.bridgelib;
+package io.github.angpysha.diploma_bridge;

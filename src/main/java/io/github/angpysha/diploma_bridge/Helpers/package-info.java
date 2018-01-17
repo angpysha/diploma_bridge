@@ -17,4 +17,4 @@
 /**
  * Contains different help methods to simplify code
  */
-package com.andrewpetrowski.diploma.bridgelib.Helpers;
+package io.github.angpysha.diploma_bridge.Helpers;

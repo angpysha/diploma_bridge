@@ -14,10 +14,10 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Controllers;
+package io.github.angpysha.diploma_bridge.Controllers;
 
-import com.andrewpetrowski.diploma.bridgelib.Models.Bmp180_Data;
-import com.andrewpetrowski.diploma.bridgelib.Models.BmpSearch;
+import io.github.angpysha.diploma_bridge.Models.Bmp180_Data;
+import io.github.angpysha.diploma_bridge.Models.BmpSearch;
 
 public class BmpController extends BaseController<Bmp180_Data,BmpSearch>{
     /**

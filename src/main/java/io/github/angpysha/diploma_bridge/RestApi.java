@@ -14,24 +14,17 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib;
+package io.github.angpysha.diploma_bridge;
 
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.Headers;
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.URLParams;
-import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
-import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
+import io.github.angpysha.diploma_bridge.HttpHelpers.Headers;
+import io.github.angpysha.diploma_bridge.HttpHelpers.URLParams;
+import io.github.angpysha.diploma_bridge.Models.Entity;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.http.ObjectMapper;
-import org.json.HTTP;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.Dictionary;
 import java.util.Map;
 import java.util.concurrent.Future;
 
@@ -150,7 +143,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPost(T data, Headers headers) throws UnirestException {
+    public HttpResponse<JsonNode> SendPost(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.post(API_URL)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -166,7 +159,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPost(String url, T data, Headers header) throws UnirestException {
+    public HttpResponse<JsonNode> SendPost(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers header) throws UnirestException {
         return Unirest.post(url)
                 .headers(header.getHeaders())
                 .body(data)
@@ -232,7 +225,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPost(String url, T data, Headers headers, URLParams params) throws UnirestException {
+    public HttpResponse<JsonNode> SendPost(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.post(url)
                 .headers(headers.getHeaders())
@@ -267,7 +260,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPost(T data, Headers headers, URLParams urlParams) throws UnirestException {
+    public HttpResponse<JsonNode> SendPost(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
 
         return Unirest.post(newURL)
@@ -312,7 +305,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.post(API_URL)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -328,7 +321,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Headers header) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers header) throws UnirestException {
         return Unirest.post(url)
                 .headers(header.getHeaders())
                 .body(data)
@@ -394,7 +387,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, Headers headers, URLParams params) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPostAsync(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.post(url)
                 .headers(headers.getHeaders())
@@ -429,7 +422,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, Headers headers, URLParams urlParams) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPostAsync(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams urlParams) throws UnirestException {
         String newURL = API_URL + urlParams.toString();
 
         return Unirest.post(newURL)
@@ -462,7 +455,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendGet(String url, Headers headers) throws UnirestException {
+    public HttpResponse<JsonNode> SendGet(String url, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.get(url)
                 .headers(headers.getHeaders())
                 .asJson();
@@ -491,7 +484,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendGet(String url, Headers headers, URLParams params) throws UnirestException {
+    public HttpResponse<JsonNode> SendGet(String url, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.get(url)
                 .headers(headers.getHeaders())
@@ -536,7 +529,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Headers headers) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.get(url)
                 .headers(headers.getHeaders())
                 .asJsonAsync();
@@ -565,7 +558,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as json object
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendGetAsync(String url, Headers headers, URLParams params) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendGetAsync(String url, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.get(url)
                 .headers(headers.getHeaders())
@@ -630,7 +623,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPut(String url, T data, Headers headers) throws UnirestException {
+    public HttpResponse<JsonNode> SendPut(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.put(url)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -660,7 +653,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPut(T data, Headers headers) throws UnirestException {
+    public HttpResponse<JsonNode> SendPut(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.put(API_URL)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -690,7 +683,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPut(String url, T data, Headers headers, URLParams params) throws UnirestException {
+    public HttpResponse<JsonNode> SendPut(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.put(url)
                 .headers(headers.getHeaders())
@@ -724,7 +717,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendPut(T data, Headers headers, URLParams params) throws UnirestException {
+    public HttpResponse<JsonNode> SendPut(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
         return Unirest.put(url)
                 .headers(headers.getHeaders())
@@ -815,7 +808,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Headers headers) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.put(url)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -845,7 +838,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Headers headers) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPutAsync(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         return Unirest.put(API_URL)
                 .headers(headers.getHeaders())
                 .body(data)
@@ -875,7 +868,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, Headers headers, URLParams params) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPutAsync(String url, T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = url + params.toString();
         return Unirest.put(url)
                 .headers(headers.getHeaders())
@@ -909,7 +902,7 @@ public class RestApi<T extends Entity> {
      * @return Server response as JSON
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendPutAsync(T data, Headers headers, URLParams params) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendPutAsync(T data, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         String url = API_URL + params.toString();
         return Unirest.put(url)
                 .headers(headers.getHeaders())
@@ -987,7 +980,7 @@ public class RestApi<T extends Entity> {
      * @return  Json value, which contains the result of operation;
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendDelete(String url,int id, Headers headers) throws UnirestException {
+    public HttpResponse<JsonNode> SendDelete(String url,int id, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
         return Unirest.delete(url)
                     .headers(headers.getHeaders())
@@ -1018,7 +1011,7 @@ public class RestApi<T extends Entity> {
      * @return  Json value, which contains the result of operation;
      * @throws UnirestException Error was occurred, when send query
      */
-    public HttpResponse<JsonNode> SendDelete(String url,int id,Headers headers,URLParams params) throws UnirestException {
+    public HttpResponse<JsonNode> SendDelete(String url, int id, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers, URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);
         url = url + params.toString();
         return Unirest.delete(url)
@@ -1065,7 +1058,7 @@ public class RestApi<T extends Entity> {
      * @return  Json value, which contains the result of operation;
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id, Headers headers) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id, io.github.angpysha.diploma_bridge.HttpHelpers.Headers headers) throws UnirestException {
         url = String.format("%s/%d",url,id);
         return Unirest.delete(url)
                 .headers(headers.getHeaders())
@@ -1096,7 +1089,7 @@ public class RestApi<T extends Entity> {
      * @return  Json value, which contains the result of operation;
      * @throws UnirestException Error was occurred, when send query
      */
-    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url,int id,Headers headers,URLParams params) throws UnirestException {
+    public Future<HttpResponse<JsonNode>> SendDeleteAsync(String url, int id, Headers headers, URLParams params) throws UnirestException {
         url = String.format("%s/%d",url,id);
         url = url + params.toString();
         return Unirest.delete(url)

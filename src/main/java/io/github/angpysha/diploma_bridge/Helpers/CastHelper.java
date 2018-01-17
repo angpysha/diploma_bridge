@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib.Helpers;
+package io.github.angpysha.diploma_bridge.Helpers;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

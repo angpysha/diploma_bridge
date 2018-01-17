@@ -14,12 +14,11 @@
  *    limitations under the License.
  */
 
-package com.andrewpetrowski.diploma.bridgelib;
+package io.github.angpysha.diploma_bridge;
 
-import com.andrewpetrowski.diploma.bridgelib.Models.Entity;
-import com.andrewpetrowski.diploma.bridgelib.Models.SearchEntity;
-import com.andrewpetrowski.diploma.bridgelib.RestApi;
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.Headers;
+import io.github.angpysha.diploma_bridge.Models.Entity;
+import io.github.angpysha.diploma_bridge.Models.SearchEntity;
+import io.github.angpysha.diploma_bridge.HttpHelpers.Headers;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;

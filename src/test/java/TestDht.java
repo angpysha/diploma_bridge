@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-import com.andrewpetrowski.diploma.bridgelib.Controllers.DhtController;
+import io.github.angpysha.diploma_bridge.Controllers.DhtController;
 import org.junit.Assert;
 import org.junit.Test;
 
