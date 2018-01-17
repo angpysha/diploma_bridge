@@ -55,6 +55,36 @@ public class DateEx extends Date {
     }
 
     /**
+     * Add days to date
+     * @param days Days value
+     * @return New date object
+     */
+    public Date AddDate(int days) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateEx);
+
+        calendar.add(Calendar.DATE,days);
+        return calendar.getTime();
+    }
+
+    /**
+     * Get date before
+     * @return Before date object
+     */
+    public Date Decrement() {
+        return  AddDate(-1);
+    }
+
+    /**
+     * Get date after
+     * @return After date object
+     */
+    public Date Increment() {
+        return AddDate(1);
+    }
+
+
+    /**
      * Get date object
      * @return Date object
      */
