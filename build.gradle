@@ -5,8 +5,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-group = 'com.andrewpetrowski.diploma'
-archivesBaseName = 'diploma-bridge'
+group = 'io.github.angpysha'
+archivesBaseName = 'diploma_bridge'
 sourceCompatibility = 1.8
 
 repositories {
@@ -30,64 +30,6 @@ artifacts {
 signing {
     sign configurations.archives
 }
-
-//ext {
-//    pomFilePath = "${project.projectDir}/tmp/pom.xml"
-//    pomFile = file(pomFilePath)
-//}
-//
-//configurations {
-//    pom
-//}
-
-//artifacts {
-//    archives jar
-//    archives sourceJar
-//    archives javadocJar
-//    if (pomFile.exists()) {
-//        pom pomFile
-//    }
-//}
-
-//task signJars (type : Sign, dependsOn: [jar, javadocJar, sourceJar]) {
-//    sign configurations.archives
-//}
-
-//// sign pom
-//task signPom(type: Sign) {
-//    sign configurations.pom
-//}
-//// defining which tasks should be called
-//if (project.ext.pomFile.exists()) {
-//    task preparePublication (dependsOn : [signJars, signPom])
-//} else {
-//    task preparePublication (dependsOn : signJars)
-//}
-
-//def getSignatureFiles = {
-//    def allFiles = project.tasks.signJars.signatureFiles.collect { it }
-//    def signedSources = allFiles.find { it.name.contains('-sources') }
-//    def signedJavadoc = allFiles.find { it.name.contains('-javadoc') }
-//    def signedJar = (allFiles - [signedSources, signedJavadoc])[0]
-//    return [
-//            [archive: signedSources, classifier: 'sources', extension: 'jar.asc'],
-//            [archive: signedJavadoc, classifier: 'javadoc', extension: 'jar.asc'],
-//            [archive: signedJar,     classifier: null,      extension: 'jar.asc']
-//    ]
-//}
-
-//// extract pom signature
-//def getPomSignature = {
-//    return project.tasks.signPom.signatureFiles.collect{it}[0]
-//}
-//
-//
-//tasks.withType(Jar) {
-//    from(project.projectDir) {
-//        include 'LICENSE.md'
-//        into 'META-INF'
-//    }
-//}
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.12'
@@ -142,91 +84,3 @@ uploadArchives {
         }
     }
 }
-
-
-//publishing {
-//    publications {
-//        gpgJars(MavenPublication) {
-//            getSignatureFiles().each {signature ->
-//                artifact (signature.archive) {
-//                    classifier = signature.classifier
-//                    extension  = signature.extension
-//                }
-//            }
-//        }
-//        if (project.ext.pomFile.exists()) {
-//            gpgPom(MavenPublication) {
-//                artifact (getPomSignature()) {
-//                    classifier = null
-//                    extension  = 'pom.asc'
-//                }
-//            }
-//        }
-//        jar(MavenPublication) {
-//            from components.java
-//            pom.withXml {
-//                asNode().with {
-//                    appendNode('packaging', 'jar')
-//                    appendNode('name', 'Diploma bridge')
-//                    appendNode('description', 'Bridge library between Raspberry application and Android')
-//                    appendNode('url', 'https://github.com/angpysha/diploma_bridge')
-//                    appendNode('scm').with {
-//                        appendNode('url', 'https://github.com/angpysha/diploma_bridge')
-//                        appendNode('connection', 'scm:git:git@github.com:angpysha/diploma_bridge.git')
-//                    }
-//
-//                    appendNode('licenses').with {
-//                        appendNode('license').with {
-//                            appendNode('name', 'Apache 2.0')
-//                            appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0')
-//                        }
-//                    }
-//                    appendNode('developers').with {
-//                        appendNode('developer').with {
-//                            appendNode('id', 'andrewpetrowski')
-//                            appendNode('name', 'Andrew Petrowsky')
-//                            appendNode('email', 'angpysha@gmail.com')
-//                        }
-//                    }
-//                }
-//                if (!project.ext.pomFile.exists()) {
-//                    writeTo (project.ext.pomFile)
-//                }
-//            }
-//            groupId 'com.andrewpetrowski.diploma'
-//            artifactId 'bridgelib'
-//            version '0.3'
-//            artifact (sourceJar) {
-//                classifier = 'sources'
-//            }
-//            artifact (javadocJar) {
-//                classifier = 'javadoc'
-//            }
-//
-//        }
-//
-//
-//    }
-//
-//    repositories {
-//        maven {
-//            if (project.ext.pomFile.exists()) {
-//                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-//                credentials {
-//                    username = mavenUser
-//                    password = mavenPass
-//                }
-//            } else {
-//                url "file:/${project.projectDir}/artifacts"
-//            }
-//        }
-////        maven {
-//            //url
-////            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-////            credentials {
-////                username 'andrewpetrowsky'
-////                password 'Zukabara234!'
-////            }
-////        }
-//    }
-//}
