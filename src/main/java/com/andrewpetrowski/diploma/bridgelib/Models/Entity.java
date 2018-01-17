@@ -1,5 +1,5 @@
 /*
- *    Copyright 2017 Andrew Petrowsky
+ *    Copyright 2018 Andrew Petrowsky
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.

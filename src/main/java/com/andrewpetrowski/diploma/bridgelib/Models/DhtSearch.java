@@ -1,5 +1,5 @@
 /*
- *    Copyright 2017 Andrew Petrowsky
+ *    Copyright 2018 Andrew Petrowsky
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,12 +16,9 @@
 
 package com.andrewpetrowski.diploma.bridgelib.Models;
 
-import com.andrewpetrowski.diploma.bridgelib.HttpHelpers.DateSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * This model is using for filtering and searching data in server
