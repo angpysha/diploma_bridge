@@ -5,6 +5,7 @@
 [![Stage](https://img.shields.io/badge/stage-beta-orange.svg)](https://github.com/angpysha/diploma_bridge)
 [![Maven](https://maven-badges.herokuapp.com/maven-central/io.github.angpysha/diploma_bridge/badge.svg?style=green)](https://github.com/angpysha/diploma_bridge)
 [![Tag](https://img.shields.io/github/tag/angpysha/diploma_bridge.svg)](https://github.com/angpysha/diploma_bridge/tags)
+
 The library, which contains API and models for interaction Raspberry Pi app 
 and Android app with server.
 
@@ -34,42 +35,51 @@ and Android app with server.
 
 ## Getting started
 
-First of all you should create data model, which extends from **Entity** class and provide data send from your Raspberry Pi to web server. 
+1. Create data model, which extends from **Entity** class, model for entity searching, which extends from EntitySearch and provide data send from your Raspberry Pi to web server. 
 
-```$xslt
-public class DHT11 extends Entity {
-    //declare your propeties here
-}
-```
-
-You must implement these apis on your web server: 
-
-```$xslt
-search; get; add; update; delete; last; datecount;
-``` 
-
-Then create controller class:
-
-Example: 
-
-```$xslt
-public class DhtController extends BaseController<DHT11_Data,DhSearch>{
-
-    public DhtController() {
-        SEARCH_URL = "/dhts/search";
-        GET_URL =  "/dhts/get";
-        ADD_URL = "/dhts/add";
-        UPDATE_URL="/dhts/update";
-        DELETE_URL="/dhts/delete";
-        GET_LAST_URL  = "/dhts/last";
-        GET_SIZE_URL = "/dhts/datecount";
+    Data model: 
+    
+    ```$xslt
+    public class DHT11 extends Entity {
+        //declare your propeties here
     }
-}
+    ```
+    Data search:
+    
+    ```$xslt
+    public class DhtSearch extends SearchEntity {
+        //declare your propeties here
+    }
+    ```
 
+2. You must implement these apis on your web server: 
 
-```
+    ```$xslt
+    search; get; add; update; delete; last; datecount;
+    ``` 
 
-Then you can use methods from controller to get info. 
+3. Create controller class:
+
+    Example: 
+    
+    ```$xslt
+    public class DhtController extends BaseController<DHT11_Data,DhtSearch>{
+    
+        public DhtController() {
+            SEARCH_URL = "/dhts/search";
+            GET_URL =  "/dhts/get";
+            ADD_URL = "/dhts/add";
+            UPDATE_URL="/dhts/update";
+            DELETE_URL="/dhts/delete";
+            GET_LAST_URL  = "/dhts/last";
+            GET_SIZE_URL = "/dhts/datecount";
+        }
+    }
+    
+    
+    ```
+
+Now you can use methods from controller to get info. 
 ## License
 
 This project is licensing by Apache 2 license. See [LICENSE](https://github.com/angpysha/diploma_bridge/blob/master/LICENSE)
