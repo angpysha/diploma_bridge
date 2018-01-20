@@ -29,9 +29,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class TestMain {
     @Test
@@ -211,6 +214,18 @@ public class TestMain {
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
         }
+    }
+
+    @Test
+    public void TestLocalDateTime() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+
+        String month = DateEx.ToFormatedLocalDateEx(cal.getTime(),new Locale("uk"));
+
+        System.out.println(month);
+
+        Assert.assertEquals(month,"20 січня 2018");
     }
 
 

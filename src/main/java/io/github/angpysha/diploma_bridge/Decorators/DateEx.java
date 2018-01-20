@@ -16,11 +16,18 @@
 
 package io.github.angpysha.diploma_bridge.Decorators;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Decorator for date for advanced functionality
+ *
  * @author Andrew Petrowsky
  * @version 0.3
  */
@@ -32,6 +39,7 @@ public class DateEx extends Date {
 
     /**
      * Create class instance
+     *
      * @param date Date object
      */
     public DateEx(Date date) {
@@ -40,6 +48,7 @@ public class DateEx extends Date {
 
     /**
      * Set time to 00:00:00
+     *
      * @return Date obejct with this time
      */
     public Date ZeroTime() {
@@ -47,15 +56,16 @@ public class DateEx extends Date {
 
         calendar.setTime(dateEx);
 
-        calendar.set(Calendar.MILLISECOND,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
         return calendar.getTime();
     }
 
     /**
      * Add days to date
+     *
      * @param days Days value
      * @return New date object
      */
@@ -63,29 +73,69 @@ public class DateEx extends Date {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateEx);
 
-        calendar.add(Calendar.DATE,days);
+        calendar.add(Calendar.DATE, days);
         return calendar.getTime();
     }
 
     /**
      * Get date before
+     *
      * @return Before date object
      */
     public Date Decrement() {
-        return  AddDate(-1);
+        return AddDate(-1);
     }
 
     /**
      * Get date after
+     *
      * @return After date object
      */
     public Date Increment() {
         return AddDate(1);
     }
 
+    /**
+     * TODO: document
+     * @param locale
+     * @return
+     */
+    public LocalDate ToLocalDate(Locale locale) {
+        LocalDate date = dateEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return date;
+
+    }
+
+    /**
+     * TODO: document
+     * @param locale
+     * @return
+     */
+    public String toFormatedString(Locale locale) {
+        LocalDate date = dateEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", locale);
+
+        return date.format(formatter);
+    }
+
+    /**
+     * //TODO: document
+     * @param date
+     * @param locale
+     * @return
+     */
+    public static String ToFormatedLocalDateEx(Date date, Locale locale) {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", locale);
+
+        return localDate.format(formatter);
+    }
 
     /**
      * Get date object
+     *
      * @return Date object
      */
     public Date getDateEx() {
@@ -94,6 +144,7 @@ public class DateEx extends Date {
 
     /**
      * Set date object
+     *
      * @param dateEx Date object
      */
     public void setDateEx(Date dateEx) {
