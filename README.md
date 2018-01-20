@@ -17,7 +17,7 @@ and Android app with server.
 - IntelliJ IDEA (or other IDE with gradle support)
 - Git
 
-## Getting started
+## Installation
 
 ### With Maven
 
