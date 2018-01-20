@@ -6,6 +6,8 @@ before_install:
 - echo signing.keyId=$keyId >> ~/.gradle/gradle.properties
 - echo signing.password=$password >> ~/.gradle/gradle.properties
 - echo signing.secretKeyRingFile=$secretKeyRingFile >> ~/.gradle/gradle.properties
+- echo mavenUser=$mavenUser >> ~/.gradle/gradle.properties
+- echo mavenPass=$mavenPass >> ~/.gradle/gradle.properties
 env:
   matrix:
     secure: OynoVvwP7Ag6iwgRPqhRd/6vMezs/0ctk1dQojh6GLMtlknGxAHz45n09Ck2JhXdFWqK3A9fCxboijxniD91imDe4GmJ0+IJjdsv+jSCyso2uO5buRsBUwNDlTQBFQLm7KX1JKnfjuoGYhddYGmpRjHRaaoSFGoqd9aariZn4czHqhBA5uwkvLRQBKEMZ7DqI/c9jhNMyqpKr6hno/y/REVW/PCowpTKQZ05xrHtKPJDWhgtM3IxbwKEH65gM5Sy4nlx8HHJ6JqMP4RRFK3o+EK2NK5QYdseBGCP1lSfylPAfPHJCIwOxGPaiiUIw0x0Y8SVoeOVAi3yohF4SAJwZaKhSTRwV3Kwijpjmvofo6/BIQTZjrFqeQhIoBo2eYoNug3B2ieTgSEOaOIz+uA7oNB/B1SUFViXK8ltoqxu0/H0b0+B217yjkVnhfMJiiI3Bnf8qUe9dVMw0QosYtU8HozjNrRJwSG7N2NfkHZQlWhSnHKf6H3PXMo07ybvYbdL7RSXwNrdnlTwiBnlxGTu+HxTLVUBAwDvtGwnQ9nza5os1zqo14T0IOwp1ztcec4ZsxKPI2B1J8z+EsCFJsnQ/7wdJefmKG+IxCfF9JVp+6oaKmyUoQKgYmYIQbm5206AH3vK4xEc5HCpGOoYk4NoxIz1f1lcigU+jerfcsBvgvY=
