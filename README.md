@@ -5,6 +5,8 @@
 [![Stage](https://img.shields.io/badge/stage-beta-orange.svg)](https://github.com/angpysha/diploma_bridge)
 [![Maven](https://maven-badges.herokuapp.com/maven-central/io.github.angpysha/diploma_bridge/badge.svg?style=green)](https://github.com/angpysha/diploma_bridge)
 [![Tag](https://img.shields.io/github/tag/angpysha/diploma_bridge.svg)](https://github.com/angpysha/diploma_bridge/tags)
+[![Coverage Status](https://coveralls.io/repos/github/angpysha/diploma_bridge/badge.svg?branch=master)](https://coveralls.io/github/angpysha/diploma_bridge?branch=master)
+
 
 The library, which contains API and models for interaction Raspberry Pi app 
 and Android app with server.
