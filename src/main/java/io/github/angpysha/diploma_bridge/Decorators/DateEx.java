@@ -95,20 +95,19 @@ public class DateEx extends Date {
     }
 
     /**
-     * TODO: document
-     * @param locale
-     * @return
+     * Convert {@link Date} to {@link LocalDate}
+     * @return LocalDate object
      */
-    public LocalDate ToLocalDate(Locale locale) {
+    public LocalDate ToLocalDate() {
         LocalDate date = dateEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         return date;
 
     }
 
     /**
-     * TODO: document
-     * @param locale
-     * @return
+     * Converts {@link Date} to locale formatted string
+     * @param locale {@link Locale} object
+     * @return Localized {@link Date} string with "dd MMMM yyyy" pattern
      */
     public String toFormatedString(Locale locale) {
         LocalDate date = dateEx.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -119,10 +118,10 @@ public class DateEx extends Date {
     }
 
     /**
-     * //TODO: document
-     * @param date
-     * @param locale
-     * @return
+     * Converts {@link Date} to locale formatted string
+     * @param date {@link Date} object
+     * @param locale {@link Locale} object
+     * @return Localized {@link Date} string with "dd MMMM yyyy" pattern
      */
     public static String ToFormatedLocalDateEx(Date date, Locale locale) {
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
