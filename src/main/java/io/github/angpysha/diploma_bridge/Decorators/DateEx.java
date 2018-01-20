@@ -16,7 +16,6 @@
 
 package io.github.angpysha.diploma_bridge.Decorators;
 
-import com.sun.xml.internal.bind.v2.TODO;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
