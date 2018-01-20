@@ -47,11 +47,13 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
+                //authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
+                authentication(userName: mavenUser, password: mavenPass)
             }
 
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
+                authentication(userName: mavenUser, password: mavenPass)
+                // authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
             }
 
             pom.project {
