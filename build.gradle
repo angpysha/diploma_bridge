@@ -5,13 +5,28 @@ apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+apply plugin: 'jacoco'
+
 group = 'io.github.angpysha'
 archivesBaseName = 'diploma_bridge'
 sourceCompatibility = 1.8
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2"
+    }
+}
 
+apply plugin: "com.github.kt3k.coveralls"
 repositories {
     mavenCentral()
 }
+
+//apply plugin: "com.github.kt3k.coveralls"
 
 task sourceJar(type: Jar, dependsOn: classes) {
     classifier 'sources'
@@ -47,13 +62,11 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                //authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
                 authentication(userName: mavenUser, password: mavenPass)
             }
 
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
                 authentication(userName: mavenUser, password: mavenPass)
-                // authentication(userName: hasProperty('mavenUser') ? mavenUser : System.getenv('mavenUser'), password: hasProperty('mavenPass')? mavenPass : System.getenv('mavenPass'))
             }
 
             pom.project {
