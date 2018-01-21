@@ -27,11 +27,11 @@ import java.util.concurrent.ExecutionException;
 
 public class TestSerialization {
     @Test
-    public void TestFromObjectToJson() {
+    public void TestFromObjectToJson() throws ExecutionException, InterruptedException {
         DHT11_Data data = new DHT11_Data(25,18);
         EntitySerializer<DHT11_Data> serializer = new EntitySerializer<>();
 
-        serializer.EntityToJsonFile(data,"E:\\test.json");
+        serializer.EntityToJsonFileAsync(data,"E:\\test.json").get();
         File f = new File("E:\\test.json");
 
         Assert.assertEquals(f.exists(),true);
@@ -41,7 +41,14 @@ public class TestSerialization {
     public void TestFromJsonToObejct() {
         EntitySerializer<DHT11_Data> serializer = new EntitySerializer<>();
 
-        DHT11_Data data = serializer.JsonFileToEntity("E:\\test.json",DHT11_Data.class);
+        DHT11_Data data = null;
+        try {
+            data = serializer.JsonFileToEntityAsync("E:\\test.json",DHT11_Data.class).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         Assert.assertEquals(data.getTemperature(),25f,1e-3);
     }
 
@@ -55,16 +62,23 @@ public class TestSerialization {
         data.add(new DHT11_Data(24,32));
         data.add(new DHT11_Data(23,24));
 
-        Boolean result = serializer.ListToJsonFile(data,"E:\\testList.json");
+        Boolean result = null;
+        try {
+            result = serializer.ListToJsonFileAsync(data,"E:\\testList.json").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         Assert.assertEquals(result,true);
     }
 
     @Test
-    public void TestJsonToList() {
+    public void TestJsonToList() throws ExecutionException, InterruptedException {
         EntitySerializer<DHT11_Data> serializer = new EntitySerializer<>();
 
-        List<DHT11_Data> data = serializer.FromJsonFileToList("E:\\testList.json",DHT11_Data[].class);
+        List<DHT11_Data> data = serializer.FromJsonFileToListAsync("E:\\testList.json",DHT11_Data[].class).get();
 
         Assert.assertEquals(data.get(0).getTemperature(),25f,1e-5);
     }
