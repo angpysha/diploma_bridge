@@ -4,6 +4,10 @@
     <bytecodeTargetLevel>
       <module name="com.andrewpetrowski.diploma.bridgelib_main" target="1.8" />
       <module name="com.andrewpetrowski.diploma.bridgelib_test" target="1.8" />
+      <module name="com.andrewpetrowski.diploma_bridge_main" target="1.8" />
+      <module name="com.andrewpetrowski.diploma_bridge_test" target="1.8" />
+      <module name="io.github.angpysha.diploma_bridge_main" target="1.8" />
+      <module name="io.github.angpysha.diploma_bridge_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
