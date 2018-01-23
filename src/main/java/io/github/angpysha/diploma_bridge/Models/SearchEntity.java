@@ -73,4 +73,19 @@ public abstract class SearchEntity {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    /**
+     * Set basic data
+     * @param beginDate Begin date
+     * @param endDate End date
+     */
+    public SearchEntity(Date beginDate,Date endDate) {
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+    }
+
+    /**
+     * Dummy constructor
+     */
+    public SearchEntity() {}
 }

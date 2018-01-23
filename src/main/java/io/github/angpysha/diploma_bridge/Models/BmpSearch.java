@@ -18,6 +18,8 @@ package io.github.angpysha.diploma_bridge.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Date;
+
 public class BmpSearch extends SearchEntity {
 
     private Float beginTemperature;
@@ -81,9 +83,11 @@ public class BmpSearch extends SearchEntity {
         this.endPressure = endPressure;
     }
 
-    public BmpSearch(Float beginTemperature,Float endTemperature,
-                     Float beginAltitude,Float endAltitude,
-                     Float beginPressure,Float endPressure) {
+    public BmpSearch(Date beginDate, Date endDate,
+                     Float beginTemperature, Float endTemperature,
+                     Float beginAltitude, Float endAltitude,
+                     Float beginPressure, Float endPressure) {
+        super(beginDate,endDate);
         this.beginTemperature = beginTemperature;
         this.endTemperature = endTemperature;
         this.beginAltitude = beginAltitude;
