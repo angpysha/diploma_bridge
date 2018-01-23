@@ -15,19 +15,23 @@
  */
 
 import io.github.angpysha.diploma_bridge.Controllers.BmpController;
+import io.github.angpysha.diploma_bridge.Decorators.DateEx;
 import io.github.angpysha.diploma_bridge.Models.Bmp180_Data;
 import io.github.angpysha.diploma_bridge.Models.BmpSearch;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TestBmp {
 
     @Test
     public void TestAdd() {
         try {
-            Bmp180_Data data = new Bmp180_Data(27,179,102235);
+            Bmp180_Data data = new Bmp180_Data(27f,179f,102235f);
             BmpController controller = new BmpController();
             boolean result = controller.AddAsync(data).get();
 
@@ -46,7 +50,7 @@ public class TestBmp {
 
             Bmp180_Data cl = controller.Get(2,Bmp180_Data.class);
 
-            cl.setPressure(999999);
+            cl.setPressure(999999f);
 
             boolean res = controller.Update(2,cl);
 
@@ -61,7 +65,7 @@ public class TestBmp {
         try {
             BmpController controller = new BmpController();
             BmpSearch search = new BmpSearch();
-            search.setBeginPressure(200000);
+            search.setBeginPressure(200000f);
             List<Bmp180_Data> data = controller.SearchAsync(search,Bmp180_Data.class).get();
 
             Assert.assertEquals(data.get(0).getPressure(),999999,1e-3);
@@ -80,5 +84,27 @@ public class TestBmp {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Test
+    public void TestByDate() throws ExecutionException, InterruptedException {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new DateEx(new Date()).ZeroTime());
+
+        calendar.add(Calendar.DATE,1);
+
+        Date after = calendar.getTime();
+
+        BmpSearch filetr = new BmpSearch(new DateEx(new Date()).ZeroTime(),after,
+                null,null,
+                null,null,
+                null,null);
+
+        BmpController controller = new BmpController();
+
+        List<Bmp180_Data> date = controller.SearchAsync(filetr,Bmp180_Data.class).get();
+
+        System.out.println(date.get(0).getPressure());
+
     }
 }

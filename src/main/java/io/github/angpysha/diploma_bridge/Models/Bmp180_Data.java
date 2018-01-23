@@ -22,40 +22,40 @@ import java.util.Date;
 
 public class Bmp180_Data extends Entity {
 
-    private float Temperature;
+    private Float Temperature;
 
-    private float Altitude;
+    private Float Altitude;
 
-    private float Pressure;
+    private Float Pressure;
 
     @JsonProperty(value = "Temperature")
-    public float getTemperature() {
+    public Float getTemperature() {
         return Temperature;
     }
 
-    public void setTemperature(float temperature) {
+    public void setTemperature(Float temperature) {
         Temperature = temperature;
     }
 
     @JsonProperty(value = "Altitude")
-    public float getAltitude() {
+    public Float getAltitude() {
         return Altitude;
     }
 
-    public void setAltitude(float altitude) {
+    public void setAltitude(Float altitude) {
         Altitude = altitude;
     }
 
     @JsonProperty(value = "Pressure")
-    public float getPressure() {
+    public Float getPressure() {
         return Pressure;
     }
 
-    public void setPressure(float pressure) {
+    public void setPressure(Float pressure) {
         Pressure = pressure;
     }
 
-    public Bmp180_Data(float Temperature, float Altitude, float Pressure) {
+    public Bmp180_Data(Float Temperature, Float Altitude, Float Pressure) {
         this.Created_at = new Date();
         this.Updated_at = new Date();
         this.Temperature = Temperature;

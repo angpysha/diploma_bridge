@@ -30,56 +30,56 @@ public class BmpSearch extends SearchEntity {
     private Float endPressure;
 
     @JsonProperty(value = "beginTemperature")
-    public float getBeginTemperature() {
+    public Float getBeginTemperature() {
         return beginTemperature;
     }
 
-    public void setBeginTemperature(float beginTemperature) {
+    public void setBeginTemperature(Float beginTemperature) {
         this.beginTemperature = beginTemperature;
     }
 
     @JsonProperty(value = "endTemperature")
-    public float getEndTemperature() {
+    public Float getEndTemperature() {
         return endTemperature;
     }
 
-    public void setEndTemperature(float endTemperature) {
+    public void setEndTemperature(Float endTemperature) {
         this.endTemperature = endTemperature;
     }
 
     @JsonProperty(value = "beginAltitude")
-    public float getBeginAltitude() {
+    public Float getBeginAltitude() {
         return beginAltitude;
     }
 
-    public void setBeginAltitude(float beginAltitude) {
+    public void setBeginAltitude(Float beginAltitude) {
         this.beginAltitude = beginAltitude;
     }
 
     @JsonProperty(value = "endAltitude")
-    public float getEndAltitude() {
+    public Float getEndAltitude() {
         return endAltitude;
     }
 
-    public void setEndAltitude(float endAltitude) {
+    public void setEndAltitude(Float endAltitude) {
         this.endAltitude = endAltitude;
     }
 
     @JsonProperty(value = "beginPressure")
-    public float getBeginPressure() {
+    public Float getBeginPressure() {
         return beginPressure;
     }
 
-    public void setBeginPressure(float beginPressure) {
+    public void setBeginPressure(Float beginPressure) {
         this.beginPressure = beginPressure;
     }
 
     @JsonProperty(value = "endPressure")
-    public float getEndPressure() {
+    public Float getEndPressure() {
         return endPressure;
     }
 
-    public void setEndPressure(float endPressure) {
+    public void setEndPressure(Float endPressure) {
         this.endPressure = endPressure;
     }
 
