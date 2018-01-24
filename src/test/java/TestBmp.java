@@ -107,4 +107,13 @@ public class TestBmp {
         System.out.println(date.get(0).getPressure());
 
     }
+
+    @Test
+    public void TestDatesCount() {
+        BmpController controller = new BmpController();
+
+        Integer count = controller.GetDatesCount();
+
+        System.out.println(count);
+    }
 }

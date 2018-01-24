@@ -25,6 +25,7 @@ public class TestDht {
         DhtController dht = new DhtController();
         int gg = dht.GetDatesCount();
 
+        System.out.println(gg);
     //    Assert.assertEquals(gg,12);
     }
 }
