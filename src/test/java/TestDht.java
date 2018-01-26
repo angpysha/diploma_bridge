@@ -15,8 +15,15 @@
  */
 
 import io.github.angpysha.diploma_bridge.Controllers.DhtController;
+import io.github.angpysha.diploma_bridge.Decorators.DateEx;
+import io.github.angpysha.diploma_bridge.Models.DHT11_Data;
+import io.github.angpysha.diploma_bridge.Models.DhtSearch;
+import io.github.angpysha.diploma_bridge.Models.DisplayPeriod;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Date;
+import java.util.List;
 
 public class TestDht {
 
@@ -27,5 +34,49 @@ public class TestDht {
 
         System.out.println(gg);
     //    Assert.assertEquals(gg,12);
+    }
+
+    @Test
+    public void TestByDay() {
+        DhtController controller = new DhtController();
+
+        List<DHT11_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.DAY,
+                DHT11_Data.class, DhtSearch.class);
+
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getHumidity()>0);
+    }
+
+    @Test
+    public void TestByWeek() {
+        DhtController controller = new DhtController();
+
+        List<DHT11_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.WEEK,
+                DHT11_Data.class, DhtSearch.class);
+
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getHumidity()>0);
+    }
+
+    @Test
+    public void TestByMonth() {
+        DhtController controller = new DhtController();
+
+        List<DHT11_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.MONTH,
+                DHT11_Data.class, DhtSearch.class);
+
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getHumidity()>0);
+    }
+
+    @Test
+    public void TestByYear() {
+        DhtController controller = new DhtController();
+
+        List<DHT11_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.YEAR,
+                DHT11_Data.class, DhtSearch.class);
+
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getHumidity()>0);
     }
 }
