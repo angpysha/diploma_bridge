@@ -18,6 +18,7 @@ import io.github.angpysha.diploma_bridge.Controllers.BmpController;
 import io.github.angpysha.diploma_bridge.Decorators.DateEx;
 import io.github.angpysha.diploma_bridge.Models.Bmp180_Data;
 import io.github.angpysha.diploma_bridge.Models.BmpSearch;
+import io.github.angpysha.diploma_bridge.Models.DisplayPeriod;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -115,5 +116,53 @@ public class TestBmp {
         Integer count = controller.GetDatesCount();
 
         System.out.println(count);
+    }
+
+    @Test
+    public void TestGetByWeek() {
+        BmpController controller = new BmpController();
+
+        List<Bmp180_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.WEEK,
+                Bmp180_Data.class,BmpSearch.class);
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getPressure()>0);
+        Assert.assertTrue(data.get(0).getAltitude()>0);
+        System.out.println(data.get(0).getPressure());
+    }
+
+    @Test
+    public void TestGetByDay() {
+        BmpController controller = new BmpController();
+
+        List<Bmp180_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.DAY,
+                Bmp180_Data.class,BmpSearch.class);
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getPressure()>0);
+        Assert.assertTrue(data.get(0).getAltitude()>0);
+        System.out.println(data.get(0).getPressure());
+    }
+
+    @Test
+    public void TestGetByMonth() {
+        BmpController controller = new BmpController();
+
+        List<Bmp180_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.MONTH,
+                Bmp180_Data.class,BmpSearch.class);
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getPressure()>0);
+        Assert.assertTrue(data.get(0).getAltitude()>0);
+        System.out.println(data.get(0).getPressure());
+    }
+
+    @Test
+    public void TestGetByYear() {
+        BmpController controller = new BmpController();
+        List<Bmp180_Data> data = controller.GetByPeriod(new DateEx(new Date()).ZeroTime(), DisplayPeriod.YEAR,
+                Bmp180_Data.class,BmpSearch.class);
+
+        Assert.assertTrue(data.get(0).getTemperature()>0);
+        Assert.assertTrue(data.get(0).getPressure()>0);
+        Assert.assertTrue(data.get(0).getAltitude()>0);
+        System.out.println(data.get(0).getPressure());
     }
 }
