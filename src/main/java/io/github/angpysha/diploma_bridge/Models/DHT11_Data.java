@@ -67,6 +67,13 @@ public class DHT11_Data extends Entity {
         this.Updated_at = new Date();
     }
 
+    public DHT11_Data(Date created,Date updated,
+                      Float temperature,Float humidity){
+        Created_at = created;
+        Updated_at = updated;
+        this.Temperature = temperature;
+        this.Humidity = humidity;
+    }
     /**
      * Dummy constructor for DHT11 sensor data
      */
