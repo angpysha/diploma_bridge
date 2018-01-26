@@ -62,18 +62,6 @@ public class BmpController extends BaseController<Bmp180_Data, BmpSearch> {
             pressure = pressure.isNaN()?0f:pressure;
             altitude = altitude.isNaN()?0f:altitude;
         }
-
-        Bmp180_Data ret = new Bmp180_Data();
-
-        ret.setCreated_at(date1);
-        ret.setUpdated_at(date2);
-
-        ret.setPressure(pressure);
-        ret.setAltitude(altitude);
-        ret.setTemperature(temperature);
-        return ret;
-//        return new Bmp180_Data(new DateEx(data.get(0).getCreated_at()).ZeroTime(),
-//                new DateEx(data.get(0).getUpdated_at()).ZeroTime(),
-//                temperature,altitude,pressure);
+        return new Bmp180_Data(date1,date1,temperature,altitude,pressure);
     }
 }
