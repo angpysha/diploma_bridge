@@ -16,6 +16,8 @@
 
 package io.github.angpysha.diploma_bridge.Controllers;
 
+import io.github.angpysha.diploma_bridge.Decorators.DateEx;
+import io.github.angpysha.diploma_bridge.Models.DisplayPeriod;
 import io.github.angpysha.diploma_bridge.RestApiEx;
 import io.github.angpysha.diploma_bridge.Models.Entity;
 import io.github.angpysha.diploma_bridge.Models.SearchEntity;
@@ -28,15 +30,19 @@ import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.DayOfWeek;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import static io.github.angpysha.diploma_bridge.Models.DisplayPeriod.*;
 
 /**
  * Basic actions to API
@@ -119,7 +125,6 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
 
-
     /**
      * Search entities in database
      *
@@ -131,17 +136,17 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
         try {
             RestApiEx<T, U> searchAp = new RestApiEx<>();
 
-            HttpResponse<JsonNode> dataa = searchAp.SendPostAsync(BASE_URL+SEARCH_URL, searchFilter).get();
+            HttpResponse<JsonNode> dataa = searchAp.SendPostAsync(BASE_URL + SEARCH_URL, searchFilter).get();
 
             String tmpStr = dataa.getBody()
                     .getArray()
                     .toString();
             //List<T> list = gson.fromJson(tmpStr,new TypeToken<List<DHT11_Data>>(){}.getType());
-            List<T> list = mapper.readValue(tmpStr,mapper.getTypeFactory().constructCollectionType(List.class,entityClass));
+            List<T> list = mapper.readValue(tmpStr, mapper.getTypeFactory().constructCollectionType(List.class, entityClass));
             return list;
         } catch (UnirestException ex) {
             return null;
-        }  catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             return null;
         } catch (ExecutionException e) {
             return null;
@@ -161,19 +166,18 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     public Integer GetDatesCount() {
         try {
             RestApi<T> restApi = new RestApi<>();
-            HttpResponse<JsonNode> node = restApi.SendPost(BASE_URL + GET_SIZE_URL,null);
+            HttpResponse<JsonNode> node = restApi.SendPost(BASE_URL + GET_SIZE_URL, null);
 
             String tmpsStr = node.getBody()
-                                .getObject()
-                                .get("pages")
-                                .toString();
+                    .getObject()
+                    .get("pages")
+                    .toString();
 
-            return mapper.readValue(tmpsStr,Integer.class);
+            return mapper.readValue(tmpsStr, Integer.class);
         } catch (UnirestException e) {
             e.printStackTrace();
             return null;
-        } catch (JsonParseException e)
-        {
+        } catch (JsonParseException e) {
             e.printStackTrace();
             return null;
         } catch (JsonMappingException e) {
@@ -189,7 +193,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     /**
      * Get object by id
      *
-     * @param id <b>Integer</b> value, which equals database <i>id</i> column
+     * @param id        <b>Integer</b> value, which equals database <i>id</i> column
      * @param className Class to cast
      * @return Casted class instance
      */
@@ -229,6 +233,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Add new row to database
+     *
      * @param model Table model
      * @return <b>Boolean</b> result of operation result
      */
@@ -250,7 +255,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             return false;
         } catch (InterruptedException e) {
             return false;
-          //  e.printStackTrace();
+            //  e.printStackTrace();
         } catch (ExecutionException e) {
             return false;
             //e.printStackTrace();
@@ -259,43 +264,134 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Add list of objects to database
+     *
      * @param data List of obects
      * @return Operation result
      */
     public Boolean Add(List<T> data) {
-            RestApi<T> api = new RestApi<>();
+        RestApi<T> api = new RestApi<>();
 
-            List<Boolean> res = new LinkedList<>();
+        List<Boolean> res = new LinkedList<>();
 
-            data.forEach(it -> {
-                HttpResponse<JsonNode> response = null;
-                try {
-                    response = api.SendPostAsync(BASE_URL + ADD_URL, it).get();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (UnirestException e) {
-                    e.printStackTrace();
-                }
-                String tmpStr = response.getBody()
-                        .getObject()
-                        .get("result")
-                        .toString();
+        data.forEach(it -> {
+            HttpResponse<JsonNode> response = null;
+            try {
+                response = api.SendPostAsync(BASE_URL + ADD_URL, it).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (UnirestException e) {
+                e.printStackTrace();
+            }
+            String tmpStr = response.getBody()
+                    .getObject()
+                    .get("result")
+                    .toString();
 
-                try {
-                    res.add(mapper.readValue(tmpStr, Boolean.class));
-                } catch (IOException e) {
+            try {
+                res.add(mapper.readValue(tmpStr, Boolean.class));
+            } catch (IOException e) {
 
-                }
-            });
+            }
+        });
 
-            return !res.contains(false);
+        return !res.contains(false);
 
     }
 
     /**
+     * @param date
+     * @param period
+     * @param tClass
+     * @param uClass
+     * @return
+     */
+    public List<T> GetByPeriod(Date date, DisplayPeriod period, Class<T> tClass, Class<U> uClass) {
+        //TODO: Implement
+        Class[] args = new Class[2];
+        args[0] = Date.class;
+        args[1] = Date.class;
+        Date begin = new DateEx(date).ZeroTime();
+        switch (period) {
+            case DAY: {
+                Date after = new DateEx(begin).Increment();
+                try {
+                    U filter = uClass.getDeclaredConstructor(args).newInstance(begin, after);
+                    List<T> data = SearchAsync(filter, tClass).get();
+                    return data;
+                } catch (InstantiationException | InterruptedException |
+                        ExecutionException | NoSuchMethodException |
+                        IllegalAccessException | InvocationTargetException e) {
+                    return null;
+                }
+            }
+            case WEEK: {
+                Date tmp = begin;
+                Calendar calendar = Calendar.getInstance();
+                List<T> data;
+                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                data = FilterData(dayOfWeek, tmp, tClass, uClass, args);
+                return data;
+            }
+            case MONTH: {
+                Date tmp = begin;
+                Calendar calendar = Calendar.getInstance();
+                List<T> data;
+                int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                data = FilterData(dayOfMonth, tmp, tClass, uClass, args);
+                return data;
+            }
+            case YEAR: {
+                Date tmp = begin;
+                Calendar calendar = Calendar.getInstance();
+                List<T> data;
+                int dayOfMonth = calendar.get(Calendar.MONTH);
+                data = FilterData(dayOfMonth,tmp,tClass,uClass,args);
+                return data;
+            }
+
+        }
+        return null;
+    }
+
+    /**
+     * @param it
+     * @param date
+     * @param tClass
+     * @param uClass
+     * @param args
+     * @return
+     */
+    private List<T> FilterData(int it, Date date, Class<T> tClass, Class<U> uClass, Class[] args) {
+        List<T> data = new ArrayList<>();
+        for (int i = 0; i < it; i++) {
+            Date after = new DateEx(date).Increment();
+            try {
+                U filter = uClass.getDeclaredConstructor(args).newInstance(date, after);
+                List<T> dat = SearchAsync(filter, tClass).get();
+                T aver = GetAverage(dat,i);
+                data.add(aver);
+                date = new DateEx(date).Decrement();
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | InterruptedException | ExecutionException e) {
+//                        e.printStackTrace();
+            }
+        }
+
+        return data;
+    }
+
+    /**
+     * @param data
+     * @return
+     */
+    public T GetAverage(List<T> data,int pos) {
+        throw new NotImplementedException();
+    }
+
+    /**
      * Delete an entry from table
+     *
      * @param model Object entry
      * @return Operation success
      */
@@ -322,6 +418,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
+     *
      * @param id Object id
      * @return Operation success
      */
@@ -348,6 +445,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Gets last table entry
+     *
      * @param className Model class
      * @return Last table entity entry
      */
@@ -377,6 +475,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Update table entry
+     *
      * @param id    Object id
      * @param model Entry model
      * @return Operation success
@@ -406,6 +505,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Update table entry
+     *
      * @param id    Object id
      * @param model Entry model
      * @return Operation success
@@ -418,6 +518,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
+     *
      * @param id Object id
      * @return Operation success
      */
@@ -429,6 +530,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Delete an entry from table
+     *
      * @param model Object model
      * @return Operation success
      */
@@ -440,6 +542,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Add new row to database
+     *
      * @param model Table model
      * @return <b>Boolean</b> result of operation result
      */
@@ -451,8 +554,9 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Search entities in database
-     * @param filter Search filter class
-     * @param entityClass  Entity model
+     *
+     * @param filter      Search filter class
+     * @param entityClass Entity model
      * @return <b>List</b> which contains models
      */
     public Future<List<T>> SearchAsync(U filter, Class<? extends Entity> entityClass) {
@@ -463,7 +567,8 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Get object by id
-     * @param id        <b>Integer</b> value, which equals database <i>id</i> column
+     *
+     * @param id     <b>Integer</b> value, which equals database <i>id</i> column
      * @param tClass Class to cast
      * @return Casted class instance
      */
@@ -475,12 +580,13 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
 
     /**
      * Gets last table entry
+     *
      * @param className Model class
      * @return Last table entity entry
      */
     public Future<T> GetLastAsync(Class<T> className) {
         return service.submit(() -> {
-           return this.GetLast(className);
+            return this.GetLast(className);
         });
     }
 

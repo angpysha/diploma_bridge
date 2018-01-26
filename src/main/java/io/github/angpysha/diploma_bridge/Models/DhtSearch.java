@@ -190,4 +190,8 @@ public class DhtSearch extends SearchEntity{
         this.endHumidity = endHumidity;
     }
 
+    public DhtSearch(Date beginDate,Date endDate) {
+        super(beginDate,endDate);
+    }
+
 }

@@ -98,4 +98,10 @@ public class BmpSearch extends SearchEntity {
 
     public BmpSearch() {}
 
+    public BmpSearch(Date beginDate, Date endDate) {
+        super(beginDate,endDate);
+    }
+
+
+
 }
