@@ -63,6 +63,14 @@ public class Bmp180_Data extends Entity {
         this.Pressure = Pressure;
     }
 
+    public Bmp180_Data(Date created,Date updated,Float Temperature, Float Altitude, Float Pressure) {
+        this.Created_at = created;
+        this.Updated_at = updated;
+        this.Temperature = Temperature;
+        this.Altitude = Altitude;
+        this.Pressure = Pressure;
+    }
+
     public Bmp180_Data() {
         this.Created_at = new Date();
         this.Updated_at = new Date();
