@@ -1,4 +1,4 @@
-version '0.3.3'
+version '0.4'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -61,6 +61,9 @@ dependencies {
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
     implementation 'com.google.code.gson:gson:2.8.1'
+// https://mvnrepository.com/artifact/joda-time/joda-time
+    implementation group: 'joda-time', name: 'joda-time', version: '2.9.9'
+
 
 }
 
