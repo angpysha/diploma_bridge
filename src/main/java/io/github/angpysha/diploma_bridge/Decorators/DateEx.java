@@ -17,6 +17,11 @@
 package io.github.angpysha.diploma_bridge.Decorators;
 
 
+import org.joda.time.DateTime;
+import org.joda.time.Months;
+import org.joda.time.Weeks;
+import org.joda.time.Years;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -96,6 +101,7 @@ public class DateEx extends Date {
 
     /**
      * Convert {@link Date} to {@link LocalDate}
+     *
      * @return LocalDate object
      */
     public LocalDate ToLocalDate() {
@@ -106,6 +112,7 @@ public class DateEx extends Date {
 
     /**
      * Converts {@link Date} to locale formatted string
+     *
      * @param locale {@link Locale} object
      * @return Localized {@link Date} string with "dd MMMM yyyy" pattern
      */
@@ -119,7 +126,8 @@ public class DateEx extends Date {
 
     /**
      * Converts {@link Date} to locale formatted string
-     * @param date {@link Date} object
+     *
+     * @param date   {@link Date} object
      * @param locale {@link Locale} object
      * @return Localized {@link Date} string with "dd MMMM yyyy" pattern
      */
@@ -129,6 +137,75 @@ public class DateEx extends Date {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", locale);
 
         return localDate.format(formatter);
+    }
+
+    /**
+     * Converts week day from US/UK format to EU
+     * @param dayOfWeek Week of day
+     * @param firstDayOfWeek First week of day current locale
+     * @return Right week day number
+     */
+    public static Integer GetLocalWeekDay(Integer dayOfWeek, Integer firstDayOfWeek) {
+        if (firstDayOfWeek == 1)
+            return dayOfWeek;
+        else if (firstDayOfWeek == 2) {
+            switch (dayOfWeek) {
+                case 1:
+                    return 7;
+                case 2:
+                    return 1;
+                case 3:
+                    return 2;
+                case 4:
+                    return 3;
+                case 5:
+                    return 4;
+                case 7:
+                    return 6;
+                default:
+                    return dayOfWeek;
+            }
+        } else
+            return dayOfWeek;
+    }
+
+    /**
+     *  Get weeks number between two dates
+     * @param date1 Begin date
+     * @param date2 End date
+     * @return Weeks number between two dates
+     */
+    public static Integer GetWeeksDiff(Date date1,Date date2) {
+        DateTime dateTime1 = new DateTime(date1);
+        DateTime dateTime2 = new DateTime(date2);
+
+        return Weeks.weeksBetween(dateTime1,dateTime2).getWeeks();
+    }
+
+    /**
+     *  Get months number between two dates
+     * @param date1 Begin date
+     * @param date2 End date
+     * @return months number between two dates
+     */
+    public static Integer GetMonthDiff(Date date1, Date date2) {
+        DateTime dateTime1 = new DateTime(date1);
+        DateTime dateTime2 = new DateTime(date2);
+
+        return Months.monthsBetween(dateTime1,dateTime2).getMonths();
+    }
+
+    /**
+     *  Get years number between two dates
+     * @param date1 Begin date
+     * @param date2 End date
+     * @return Years number between two dates
+     */
+    public static Integer GetYearsDiff(Date date1, Date date2) {
+        DateTime dateTime1 = new DateTime(date1);
+        DateTime dateTime2 = new DateTime(date2);
+
+        return Years.yearsBetween(dateTime1,dateTime2).getYears();
     }
 
     /**

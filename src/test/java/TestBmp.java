@@ -14,10 +14,12 @@
  *    limitations under the License.
  */
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import io.github.angpysha.diploma_bridge.Controllers.BmpController;
 import io.github.angpysha.diploma_bridge.Decorators.DateEx;
 import io.github.angpysha.diploma_bridge.Models.Bmp180_Data;
 import io.github.angpysha.diploma_bridge.Models.BmpSearch;
+import io.github.angpysha.diploma_bridge.Models.DhtSearch;
 import io.github.angpysha.diploma_bridge.Models.DisplayPeriod;
 import org.junit.Assert;
 import org.junit.Test;
@@ -164,5 +166,18 @@ public class TestBmp {
         Assert.assertTrue(data.get(0).getPressure()>0);
         Assert.assertTrue(data.get(0).getAltitude()>0);
         System.out.println(data.get(0).getPressure());
+    }
+
+    @Test
+    public void TestGetMaxMinDate() {
+        try {
+            BmpController bmpController = new BmpController();
+
+            Date[] dates = bmpController.GetMinMaxDate();
+
+            int i = 0;
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
     }
 }
