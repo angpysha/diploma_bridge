@@ -34,6 +34,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.util.*;
@@ -110,6 +111,9 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      */
     protected String GET_SIZE_URL = "";
 
+    protected String GET_FIRST_URL = "";
+
+    protected String GET_MAX_MIN_DATES_URL = "";
     /**
      * Private member needed to async execution
      */
@@ -301,11 +305,12 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
     /**
-     * @param date
-     * @param period
-     * @param tClass
-     * @param uClass
-     * @return
+     *  Gets and sorts date by some period
+     * @param date {@link Date} to sort (must be date in period)
+     * @param period Period modifier (for more see {@link DisplayPeriod}
+     * @param tClass Model class <b>must extends from {@link Entity} </b>
+     * @param uClass Search class <b>must extends from {@link SearchEntity}</b>
+     * @return Data sorted by some period
      */
     public List<T> GetByPeriod(Date date, DisplayPeriod period, Class<T> tClass, Class<U> uClass) {
         //TODO: Implement
@@ -329,14 +334,17 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             case WEEK: {
                 Date tmp = begin;
                 Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
                 List<T> data;
-                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                int dayOfWeek = DateEx.GetLocalWeekDay(calendar.get(Calendar.DAY_OF_WEEK),
+                        calendar.getFirstDayOfWeek());
                 data = FilterData(dayOfWeek, tmp, tClass, uClass, args);
                 return data;
             }
             case MONTH: {
                 Date tmp = begin;
                 Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
                 List<T> data;
                 int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
                 data = FilterData(dayOfMonth, tmp, tClass, uClass, args);
@@ -345,6 +353,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             case YEAR: {
                 Date tmp = begin;
                 Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
                 List<T> data;
                 int dayOfMonth = calendar.get(Calendar.MONTH);
                 data = FilterData(dayOfMonth,tmp,tClass,uClass,args);
@@ -356,16 +365,17 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
     /**
-     * @param it
-     * @param date
-     * @param tClass
-     * @param uClass
-     * @param args
-     * @return
+     * Takes all date in container with some criteria
+     * @param numElems Number of {@link List} elements
+     * @param date Search {@link Date}
+     * @param tClass Model class <b>must extends from {@link Entity} </b>
+     * @param uClass Search class <b>must extends from {@link SearchEntity}</b>
+     * @param args Constructor arguments array
+     * @return {@link List} with some criteria
      */
-    private List<T> FilterData(int it, Date date, Class<T> tClass, Class<U> uClass, Class[] args) {
+    private List<T> FilterData(int numElems, Date date, Class<T> tClass, Class<U> uClass, Class[] args) {
         List<T> data = new ArrayList<>();
-        for (int i = 0; i < it; i++) {
+        for (int i = 0; i < numElems; i++) {
             Date after = new DateEx(date).Increment();
             try {
                 U filter = uClass.getDeclaredConstructor(args).newInstance(date, after);
@@ -382,8 +392,10 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
     }
 
     /**
-     * @param data
-     * @return
+     * Get average value of List (must be {@code List<? extends Entity>})
+     * @param data List, needed to get average
+     * @param pos Page position
+     * @return Average value
      */
     public T GetAverage(List<T> data,int pos) {
         throw new NotImplementedException();
@@ -413,6 +425,35 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
             return false;
         } catch (ExecutionException e) {
             return false;
+        }
+    }
+
+    public Date[] GetMinMaxDate() throws UnirestException {
+        try {
+            RestApi<T> restApi = new RestApi<>();
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(String.format("%s%s",BASE_URL,GET_MAX_MIN_DATES_URL),
+                    null).get();
+            String dateMin = response.getBody()
+                    .getObject()
+                    .get("min")
+                    .toString();
+            String dateMax = response.getBody()
+                    .getObject()
+                    .get("max")
+                    .toString();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date date_min = df.parse(dateMin);
+            Date date_max = df.parse(dateMax);
+
+            Date[] dates = new Date[2];
+
+            dates[0] = date_min;
+            dates[1] = date_max;
+
+            return  dates;
+        } catch (InterruptedException | ExecutionException | ParseException e ) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -450,10 +491,61 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      * @return Last table entity entry
      */
     public T GetLast(Class<T> className) {
+       return GetLast(null,className);
+    }
+
+    /**
+     * Gets last table entry
+     * @param filter Model filter
+     * @param className Model class
+     * @return Last table entity entry
+     */
+    public T GetLast(U filter,Class<T> className) {
         try {
-            RestApi<T> restApi = new RestApi<>();
+            RestApiEx<T,U> restApi = new RestApiEx<>();
             //      String gg = SEARCH_URL + "/" + Integer.toString(id);
-            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + GET_LAST_URL, null).get();
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + GET_LAST_URL, filter).get();
+
+            String tmpStr = response.getBody()
+                    .getObject()
+                    .toString();
+
+
+            return mapper.readValue(tmpStr, className);
+        } catch (UnirestException ex) {
+            return null;
+        } catch (IOException ex) {
+            return null;
+        } catch (InterruptedException e) {
+            return null;
+        } catch (ExecutionException e) {
+            return null;
+        }
+
+    }
+
+    /**
+     * Gets first table entry
+     *
+     * @param className Model class
+     * @return First table entity entry
+     */
+    public T GetFirst(Class<T> className) {
+       return GetFirst(null,className);
+
+    }
+
+    /**
+     * Gets first table entry
+     * @param filter Model filter
+     * @param className Model class
+     * @return First table entity entry
+     */
+    public T GetFirst(U filter,Class<T> className) {
+        try {
+            RestApiEx<T,U> restApi = new RestApiEx<>();
+            //      String gg = SEARCH_URL + "/" + Integer.toString(id);
+            HttpResponse<JsonNode> response = restApi.SendPostAsync(BASE_URL + GET_FIRST_URL, filter).get();
 
             String tmpStr = response.getBody()
                     .getObject()
