@@ -41,6 +41,7 @@ public class DhtController extends BaseController<DHT11_Data,DhtSearch> {
         DELETE_URL="/dhts/delete";
         GET_LAST_URL  = "/dhts/last";
         GET_SIZE_URL = "/dhts/datecount";
+        GET_MAX_MIN_DATES_URL = "/dhts/firstlastdates";
     }
 
     @Override

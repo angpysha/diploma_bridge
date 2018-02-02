@@ -35,6 +35,7 @@ public class BmpController extends BaseController<Bmp180_Data, BmpSearch> {
         DELETE_URL = "/bmps/delete";
         GET_LAST_URL = "/bmps/last";
         GET_SIZE_URL = "/bmps/datecount";
+        GET_MAX_MIN_DATES_URL = "/bmps/firstlastdates";
     }
 
     @Override
