@@ -1,4 +1,4 @@
-version '0.4'
+version '0.5'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -10,6 +10,9 @@ apply plugin: 'jacoco'
 group = 'io.github.angpysha'
 archivesBaseName = 'diploma_bridge'
 sourceCompatibility = 1.8
+wrapper {
+    gradleVersion = '4.6'
+}
 buildscript {
     repositories {
         maven {
@@ -63,6 +66,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.1'
 // https://mvnrepository.com/artifact/joda-time/joda-time
     implementation group: 'joda-time', name: 'joda-time', version: '2.9.9'
+    implementation ('io.socket:socket.io-client:1.0.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
 
 
 }

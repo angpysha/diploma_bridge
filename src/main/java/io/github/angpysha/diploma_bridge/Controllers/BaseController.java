@@ -30,8 +30,6 @@ import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
@@ -55,7 +53,7 @@ import static io.github.angpysha.diploma_bridge.Models.DisplayPeriod.*;
  * @see Entity
  * @see SearchEntity
  */
-public class BaseController<T extends Entity, U extends SearchEntity> {
+public abstract class BaseController<T extends Entity, U extends SearchEntity> {
 
     private Gson gson;
     /**
@@ -397,9 +395,7 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
      * @param pos Page position
      * @return Average value
      */
-    public T GetAverage(List<T> data,int pos) {
-        throw new NotImplementedException();
-    }
+    public abstract T GetAverage(List<T> data,int pos);
 
     /**
      * Delete an entry from table
@@ -686,6 +682,14 @@ public class BaseController<T extends Entity, U extends SearchEntity> {
         return service.submit(() -> {
             return this.Add(data);
         });
+    }
+
+    public void setBaseUrl(String url) {
+        BASE_URL = url;
+    }
+
+    public String getBaseUrl() {
+        return BASE_URL;
     }
 
 }
