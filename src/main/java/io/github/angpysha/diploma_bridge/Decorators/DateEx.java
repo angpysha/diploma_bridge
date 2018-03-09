@@ -82,6 +82,20 @@ public class DateEx extends Date {
     }
 
     /**
+     * Add seconds to date
+     * @param seconds Seconds to add
+     * @return New Date object
+     */
+    public Date AddSeconds(int seconds) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateEx);
+
+        calendar.add(Calendar.SECOND,seconds);
+
+        return calendar.getTime();
+    }
+
+    /**
      * Get date before
      *
      * @return Before date object
@@ -109,6 +123,8 @@ public class DateEx extends Date {
         return date;
 
     }
+
+
 
     /**
      * Converts {@link Date} to locale formatted string
@@ -152,18 +168,8 @@ public class DateEx extends Date {
             switch (dayOfWeek) {
                 case 1:
                     return 7;
-                case 2:
-                    return 1;
-                case 3:
-                    return 2;
-                case 4:
-                    return 3;
-                case 5:
-                    return 4;
-                case 7:
-                    return 6;
                 default:
-                    return dayOfWeek;
+                    return dayOfWeek-1;
             }
         } else
             return dayOfWeek;
