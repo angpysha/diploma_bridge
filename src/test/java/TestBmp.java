@@ -172,7 +172,7 @@ public class TestBmp {
     public void TestGetMaxMinDate() {
         try {
             BmpController bmpController = new BmpController();
-
+            bmpController.setBaseUrl("http://rasp.kl.com.ua/web/api/v1");
             Date[] dates = bmpController.GetMinMaxDate();
 
             int i = 0;

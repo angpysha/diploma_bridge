@@ -23,6 +23,9 @@ import io.github.angpysha.diploma_bridge.Models.BmpSearch;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller class for BMP180 sensor
+ */
 public class BmpController extends BaseController<Bmp180_Data, BmpSearch> {
     /**
      * Dummy class constructor
@@ -34,10 +37,17 @@ public class BmpController extends BaseController<Bmp180_Data, BmpSearch> {
         UPDATE_URL = "/bmps/update";
         DELETE_URL = "/bmps/delete";
         GET_LAST_URL = "/bmps/last";
+        GET_FIRST_URL = "/bmps/first";
         GET_SIZE_URL = "/bmps/datecount";
         GET_MAX_MIN_DATES_URL = "/bmps/firstlastdates";
     }
 
+    /**
+     * Get average values for BMP180 data
+     * @param data List, needed to get average
+     * @param pos Page position
+     * @return Average value
+     */
     @Override
     public Bmp180_Data GetAverage(List<Bmp180_Data> data,int pos) {
         //     return super.GetAverage(data);
