@@ -25,14 +25,14 @@ and Android app with server.
 <dependency>
     <groupId>io.github.angpysha</groupId>
     <artifactId>diploma_bridge</artifactId>
-    <version>0.3.1</version>
+    <version>0.5</version>
 </dependency>
 ```
 
 ### With Gradle
 
 ```$xslt
-    compile 'io.github.angpysha:diploma_bridge:0.3'
+    compile 'io.github.angpysha:diploma_bridge:0.5'
 ```
 
 ## Getting started
@@ -80,7 +80,7 @@ and Android app with server.
     
     
     ```
-
+4. You should also implement GetCount method for every controller
 Now you can use methods from controller to get info. 
 ## License
 

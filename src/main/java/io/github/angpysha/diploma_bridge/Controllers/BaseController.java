@@ -16,11 +16,11 @@
 
 package io.github.angpysha.diploma_bridge.Controllers;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.request.body.RequestBodyEntity;
 import io.github.angpysha.diploma_bridge.Decorators.DateEx;
-import io.github.angpysha.diploma_bridge.Models.DisplayPeriod;
+import io.github.angpysha.diploma_bridge.Models.*;
 import io.github.angpysha.diploma_bridge.RestApiEx;
-import io.github.angpysha.diploma_bridge.Models.Entity;
-import io.github.angpysha.diploma_bridge.Models.SearchEntity;
 import io.github.angpysha.diploma_bridge.RestApi;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -53,13 +53,16 @@ import static io.github.angpysha.diploma_bridge.Models.DisplayPeriod.*;
  * @see Entity
  * @see SearchEntity
  */
-public abstract class BaseController<T extends Entity, U extends SearchEntity> {
+public abstract class BaseController<T extends Entity, U extends SearchEntity> implements IBaseController {
 
+    protected Date TokenExpires;
+    protected String Token;
     private Gson gson;
     /**
      * Date format for right serialization
      */
     protected SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
     /**
      * Object mapper for object serialization
@@ -302,6 +305,34 @@ public abstract class BaseController<T extends Entity, U extends SearchEntity> {
 
     }
 
+    public int GetCount(T model,Class<T> entityClass,Class<U> filterClass) throws NoSuchMethodException {
+
+        try {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(model.getCreated_at());
+
+        calendar.add(Calendar.SECOND,-1);
+
+        Date date1 = calendar.getTime();
+
+        Calendar calendar1 = Calendar.getInstance();
+
+        calendar1.setTime(model.getCreated_at());
+
+        calendar.add(Calendar.SECOND,1);
+        Date date2 = calendar1.getTime();
+        U search = filterClass.getDeclaredConstructor().newInstance();
+
+
+        search.setBeginDate(date1);
+        search.setEndDate(date2);
+        List<T> data = Search(search,entityClass);
+        return data.size();
+        } catch (Exception ex) {
+            return 0;
+        }
+    }
     /**
      *  Gets and sorts date by some period
      * @param date {@link Date} to sort (must be date in period)
@@ -311,7 +342,6 @@ public abstract class BaseController<T extends Entity, U extends SearchEntity> {
      * @return Data sorted by some period
      */
     public List<T> GetByPeriod(Date date, DisplayPeriod period, Class<T> tClass, Class<U> uClass) {
-        //TODO: Implement
         Class[] args = new Class[2];
         args[0] = Date.class;
         args[1] = Date.class;

@@ -16,15 +16,22 @@
 
 package io.github.angpysha.diploma_bridge.Helpers;
 
+import io.github.angpysha.diploma_bridge.Annotations.FieldProperty;
 import io.github.angpysha.diploma_bridge.Models.Entity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.github.angpysha.diploma_bridge.Requests.ApiRequest;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -33,7 +40,7 @@ import java.util.concurrent.Future;
  * Helps to selrialize Entity object to JSON file
  * @param <T> Entity class object
  */
-public class EntitySerializer<T extends Entity> {
+public class EntitySerializer<T> {
 
     private Gson gson;
     private ObjectMapper mapper;
@@ -47,6 +54,29 @@ public class EntitySerializer<T extends Entity> {
         gson = new Gson();
     }
 
+
+    /**
+     * Convert json to object
+     * @param json JSON object
+     * @param javaClass Object class
+     * @return Java object
+     */
+    public T JsonToObject(String json,Class<T> javaClass) {
+      //  Type objectType = new TypeToken<T>(){}.getType();
+
+        T obj = gson.fromJson(json,javaClass);
+        return obj;
+    }
+
+    /**
+     * Convert object to json
+     * @param object Java object
+     * @return Json object
+     */
+    public String ObjectToJson(T object) {
+        String json = gson.toJson(object);
+        return json;
+    }
     /**
      * Convert <b>List</b> to JSON file
      * @param data List of objects
@@ -81,6 +111,39 @@ public class EntitySerializer<T extends Entity> {
         } catch (IOException ex) {
             return null;
         }
+    }
+
+    /**
+     *  This method converts class to map obejct using reflection
+     * @param object Object to convert
+     * @param javaClass Obejct class
+     * @return Map with annotated properties
+     */
+    public Map<String,Object> ClassToFields(T object,Class<T> javaClass) {
+        Map<String,Object> map = new HashMap<>();
+
+        for (Field field : object.getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(FieldProperty.class)) {
+                try {
+                    FieldProperty fieldProperty = field.getAnnotation(FieldProperty.class);
+                    String name = field.getName();
+ //                   Object val = field.get(field.getName());
+                    Method vall = object.getClass().getMethod("get"+name);
+                    Object valll = vall.invoke(object);
+                    String prop = fieldProperty.value();
+                    map.put(prop,valll);
+                } catch (IllegalAccessException e) {
+                    //
+                    int i =0;
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return map;
     }
 
     /**

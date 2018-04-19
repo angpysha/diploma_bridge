@@ -1,4 +1,4 @@
-version '0.5'
+version '0.6'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -70,6 +70,7 @@ dependencies {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
 
 
 }
