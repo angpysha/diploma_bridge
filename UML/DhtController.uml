@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>io.github.angpysha.diploma_bridge.Controllers.DhtController</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">io.github.angpysha.diploma_bridge.Models.Entity</node>
+    <node x="185.5" y="292.0">io.github.angpysha.diploma_bridge.Controllers.DhtController</node>
+    <node x="161.0" y="0.0">io.github.angpysha.diploma_bridge.Models.SearchEntity</node>
+    <node x="183.0" y="168.0">io.github.angpysha.diploma_bridge.Controllers.BaseController</node>
+    <node x="382.0" y="44.5">io.github.angpysha.diploma_bridge.Controllers.IBaseController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="io.github.angpysha.diploma_bridge.Controllers.BaseController" target="io.github.angpysha.diploma_bridge.Models.SearchEntity">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.Controllers.BaseController" target="io.github.angpysha.diploma_bridge.Models.Entity">
+      <point x="-52.33333333333334" y="-37.0" />
+      <point x="209.16666666666666" y="143.0" />
+      <point x="70.5" y="143.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.Controllers.DhtController" target="io.github.angpysha.diploma_bridge.Controllers.BaseController">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.Controllers.BaseController" target="io.github.angpysha.diploma_bridge.Controllers.IBaseController">
+      <point x="52.333333333333314" y="-37.0" />
+      <point x="313.8333333333333" y="143.0" />
+      <point x="446.0" y="143.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="178.5" y="301.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

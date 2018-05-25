@@ -38,7 +38,7 @@ import java.util.Map;
 public class AuthController extends BaseController {
 
     /**
-     * <b>Authenticate user.</b> <br/>
+     * <b>Authenticate user.</b> 
      * You can use token in all controller classes as field Token
      * @param request Request, which contains user data
      * @param url Target url

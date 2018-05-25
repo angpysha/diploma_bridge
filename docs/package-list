@@ -1,7 +1,11 @@
 
 io.github.angpysha.diploma_bridge
+io.github.angpysha.diploma_bridge.Annotations
 io.github.angpysha.diploma_bridge.Controllers
 io.github.angpysha.diploma_bridge.Decorators
+io.github.angpysha.diploma_bridge.Exceptions
 io.github.angpysha.diploma_bridge.Helpers
 io.github.angpysha.diploma_bridge.HttpHelpers
 io.github.angpysha.diploma_bridge.Models
+io.github.angpysha.diploma_bridge.Requests
+io.github.angpysha.diploma_bridge.RestClient

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>io.github.angpysha.diploma_bridge.RestApiEx</OriginalElement>
+  <nodes>
+    <node x="266.5" y="0.0">io.github.angpysha.diploma_bridge.Models.Entity</node>
+    <node x="0.0" y="168.0">io.github.angpysha.diploma_bridge.Models.SearchEntity</node>
+    <node x="228.0" y="336.0">io.github.angpysha.diploma_bridge.RestApiEx</node>
+    <node x="221.0" y="179.0">io.github.angpysha.diploma_bridge.RestApi</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="io.github.angpysha.diploma_bridge.RestApi" target="io.github.angpysha.diploma_bridge.Models.Entity">
+      <point x="0.0" y="-48.0" />
+      <point x="294.0" y="143.0" />
+      <point x="301.75" y="143.0" />
+      <point x="-35.25" y="59.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.RestApiEx" target="io.github.angpysha.diploma_bridge.Models.Entity">
+      <point x="44.0" y="-25.5" />
+      <point x="338.0" y="311.0" />
+      <point x="377.5" y="311.0" />
+      <point x="377.5" y="143.0" />
+      <point x="372.25" y="143.0" />
+      <point x="35.25" y="59.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.RestApiEx" target="io.github.angpysha.diploma_bridge.RestApi">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="io.github.angpysha.diploma_bridge.RestApiEx" target="io.github.angpysha.diploma_bridge.Models.SearchEntity">
+      <point x="-44.0" y="-25.5" />
+      <point x="250.0" y="311.0" />
+      <point x="100.5" y="311.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="184.0" y="305.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
