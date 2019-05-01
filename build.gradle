@@ -10,8 +10,9 @@ apply plugin: 'jacoco'
 group = 'io.github.angpysha'
 archivesBaseName = 'diploma_bridge'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 wrapper {
-    gradleVersion = '4.6'
+    gradleVersion = '5.1.1'
 }
 buildscript {
     repositories {
@@ -71,6 +72,7 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
 
 
 }

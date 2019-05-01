@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge.iml" filepath="$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge.iml" filepath="$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge.iml" group="io.github.angpysha.diploma_bridge" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge_main.iml" filepath="$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge_main.iml" group="io.github.angpysha.diploma_bridge" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge_test.iml" filepath="$PROJECT_DIR$/.idea/modules/io.github.angpysha.diploma_bridge_test.iml" group="io.github.angpysha.diploma_bridge" />
     </modules>
