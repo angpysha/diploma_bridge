@@ -30,6 +30,9 @@ import java.util.concurrent.Future;
 
 /**
  * This class provides Rest API support for this project.
+ * This class will be removed on next library versions
+ * Now use
+ * @see io.github.angpysha.diploma_bridge.HttpClient.HttpClient
  * There is used <i><b>Unirest Java library</b></i> for simplify HTTP Requests
  *
  * @param <T> Database model which extends from <b>Entity</b> class
@@ -37,6 +40,7 @@ import java.util.concurrent.Future;
  * @author Andrew Petrowsky
  * @version 0.8
  */
+@Deprecated()
 public class RestApi<T extends Entity> {
     protected final String API_URL = "http://diplomaapi:8080/dhts/add";
 

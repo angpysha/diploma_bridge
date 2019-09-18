@@ -1,4 +1,4 @@
-version '0.6'
+version '0.9'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -10,8 +10,9 @@ apply plugin: 'jacoco'
 group = 'io.github.angpysha'
 archivesBaseName = 'diploma_bridge'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 wrapper {
-    gradleVersion = '4.6'
+    gradleVersion = '5.1.1'
 }
 buildscript {
     repositories {
@@ -71,50 +72,51 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '1.1.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
 
 
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: mavenUser, password: mavenPass)
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: mavenUser, password: mavenPass)
-            }
-
-            pom.project {
-                name 'Bridge application'
-                packaging 'jar'
-                // optionally artifactId can be defined here
-                description 'Library is using as bridge between Raspberry PI and Android'
-                url 'https://angpysha.github.io/diploma_bridge/'
-
-                scm {
-                    connection 'scm:git:git@github.com:angpysha/diploma_bridge.git'
-                    url 'https://github.com/angpysha/diploma_bridge'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'andrewpetrowsky'
-                        name 'Andrew Petrowsky'
-                        email 'angpysha@gmail.com'
-                    }
-                }
-            }
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: NEXUS_USERNAME, password: NEXUS_USERNAME)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: NEXUS_USERNAME, password: NEXUS_USERNAME)
+//            }
+//
+//            pom.project {
+//                name 'Bridge application'
+//                packaging 'jar'
+//                // optionally artifactId can be defined here
+//                description 'Library is using as bridge between Raspberry PI and Android'
+//                url 'https://angpysha.github.io/diploma_bridge/'
+//
+//                scm {
+//                    connection 'scm:git:git@github.com:angpysha/diploma_bridge.git'
+//                    url 'https://github.com/angpysha/diploma_bridge'
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'andrewpetrowsky'
+//                        name 'Andrew Petrowsky'
+//                        email 'angpysha@gmail.com'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

@@ -53,6 +53,7 @@ import static io.github.angpysha.diploma_bridge.Models.DisplayPeriod.*;
  * @see Entity
  * @see SearchEntity
  */
+@Deprecated
 public abstract class BaseController<T extends Entity, U extends SearchEntity> implements IBaseController {
 
     protected Date TokenExpires;

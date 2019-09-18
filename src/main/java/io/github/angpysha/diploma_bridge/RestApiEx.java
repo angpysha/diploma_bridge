@@ -28,6 +28,9 @@ import java.util.concurrent.Future;
 
 /**
  * Extended class for REST API. This one can help to split search model from database model.
+ * This class will be removed on next library versions
+ * Now use
+ * @see io.github.angpysha.diploma_bridge.HttpClient.HttpClient
  * @param <T> Database model which extends from <b>Entity</b> class
  * @param <U> Search model which extends from <b>SearchEntity</b> class
  * @see Entity
@@ -35,6 +38,7 @@ import java.util.concurrent.Future;
  * @author Andrew Petrowsky
  * @version 0.1
  */
+@Deprecated
 public class RestApiEx<T extends Entity,U extends SearchEntity> extends RestApi<T> {
 
     /**
