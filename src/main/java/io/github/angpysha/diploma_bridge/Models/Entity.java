@@ -106,4 +106,6 @@ public abstract class Entity {
     public Date getUpdated_at() {
         return Updated_at;
     }
+
+    //public abstract void convertDataToJson();
 }

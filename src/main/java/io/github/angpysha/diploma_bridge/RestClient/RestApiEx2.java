@@ -31,9 +31,13 @@ import java.util.Map;
 
 /**
  *  Used for send request with some addidtional paramenters {@link ApiRequest}
+ * This class will be removed on next library versions
+ * Now use
+ * @see io.github.angpysha.diploma_bridge.HttpClient.HttpClient
  * @param <T> {@link Entity} class
  * @param <U> {@link ApiRequest} class
  */
+@Deprecated
 public class RestApiEx2<T extends Entity,U extends ApiRequest> extends RestApi<T> {
 
     private RequestBodyEntity entity;

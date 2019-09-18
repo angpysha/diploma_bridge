@@ -17,6 +17,7 @@
 package io.github.angpysha.diploma_bridge.HttpClient;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.*;
 import okhttp3.internal.http2.Header;
 import org.apache.http.client.methods.RequestBuilder;
@@ -32,7 +33,7 @@ import java.util.concurrent.CompletableFuture;
 public class HttpClient {
 
     private static OkHttpClient _httpClient = new OkHttpClient();
-    private static Gson gson = new Gson();
+    public static Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
 
@@ -101,6 +102,70 @@ public class HttpClient {
 
     }
 
+    public static String SendRequestJson(String URL,ERequestType requestType, String json,Map<String,String> headers ) throws IOException {
+        Request.Builder requestBuilder = new Request.Builder().url(URL);
+        if (headers != null) {
+            for (Map.Entry<String, String> header : headers.entrySet()) {
+                requestBuilder.addHeader(header.getKey(), header.getValue());
+            }
+        }
+
+        if (requestType == ERequestType.GET) {
+            Request request = requestBuilder.get().build();
+
+            //return getT(responsetype, request);
+            return SendRequestInternal(request);
+        }
+
+        if (requestType == ERequestType.POST) {
+            if (json != null) {
+                RequestBody requestBody = RequestBody.create(JSON, json);
+                Request request = requestBuilder.post(requestBody).build();
+
+                return SendRequestInternal(request);
+            } else {
+                RequestBody requestBody = RequestBody.create(JSON,"");
+                Request request = requestBuilder.post(null).build();
+                return SendRequestInternal(request);
+
+            }
+        }
+
+        if (requestType == ERequestType.EDIT) {
+            if (json != null) {
+                RequestBody requestBody = RequestBody.create(JSON, json);
+                Request request = requestBuilder.put(requestBody).build();
+                return SendRequestInternal(request);
+            } else {
+                RequestBody requestBody = RequestBody.create(JSON,"");
+                Request request = requestBuilder.put(null).build();
+                return SendRequestInternal(request);
+            }
+        }
+
+        if (requestType == ERequestType.DELETE) {
+            if (json != null) {
+                RequestBody requestBody = RequestBody.create(JSON, json);
+                Request request = requestBuilder.delete(requestBody).build();
+                return SendRequestInternal(request);
+            } else {
+                RequestBody requestBody = RequestBody.create(JSON, "");
+                Request request = requestBuilder.delete(null).build();
+                return SendRequestInternal(request);
+            }
+        }
+
+        return null;
+    }
+
+    private static String SendRequestInternal(Request request) {
+        try (Response response = _httpClient.newCall(request).execute()){
+            return response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private static <T> T getT(Class<T> responsetype, Request request) {
         try (Response response = _httpClient.newCall(request).execute()) {
             String responseJson = response.body().string();
@@ -176,6 +241,75 @@ public class HttpClient {
                 String ResponseString = response.body().string();
                 T responseObject = gson.fromJson(ResponseString,responsetype);
                 promise.complete(responseObject);
+            }
+        });
+
+        return promise;
+    }
+
+    public static CompletableFuture<String> SendRequestAsyncJson(String URL, ERequestType requestType, Object data, Map<String,String> headers) throws IOException {
+        Request.Builder builder = new Request.Builder().url(URL);
+
+        for (Map.Entry<String, String > header : headers.entrySet()) {
+            builder.addHeader(header.getKey(),header.getValue());
+        }
+
+        if (requestType == ERequestType.GET) {
+            Request request = builder.get().build();
+            return gettCompletableFutureJson(request);
+        }
+
+
+        if (requestType == ERequestType.POST) {
+
+
+            String json = gson.toJson(data);
+
+            RequestBody requestBody = RequestBody.create(JSON,json);
+
+            Request request = builder.post(requestBody).build();
+            return gettCompletableFutureJson(request);
+        }
+
+        if (requestType == ERequestType.EDIT) {
+
+
+            String json = gson.toJson(data);
+
+            RequestBody requestBody = RequestBody.create(JSON,json);
+
+            Request request = builder.put(requestBody).build();
+            return gettCompletableFutureJson(request);
+        }
+
+        if (requestType == ERequestType.DELETE) {
+
+
+            String json = gson.toJson(data);
+
+            RequestBody requestBody = RequestBody.create(JSON,json);
+
+            Request request = builder.delete(requestBody).build();
+            return gettCompletableFutureJson(request);
+        }
+
+        return null;
+
+    }
+
+    private static CompletableFuture<String> gettCompletableFutureJson(Request request) {
+        final CompletableFuture<String> promise = new CompletableFuture<>();
+        _httpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                promise.complete(null);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String ResponseString = response.body().string();
+
+                promise.complete(ResponseString);
             }
         });
 
